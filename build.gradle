@@ -1,0 +1,20 @@
+group 'com.agt.armgek'
+version '1.0'
+
+buildscript {
+    ext.kotlinVersion = '1.2.21'
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
