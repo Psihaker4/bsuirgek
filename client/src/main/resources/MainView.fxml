@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.agt.bsuirgek.client.controller.TestController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="800.0">
+         <items>
+            <ChoiceBox prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ChoiceBox>
+            <ComboBox editable="true" prefWidth="70.0" promptText="20" />
+            <ToggleButton mnemonicParsing="false" text="B" />
+            <ToggleButton mnemonicParsing="false" text="I" />
+            <ToggleButton mnemonicParsing="false" text="U" />
+            <ChoiceBox prefWidth="70.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ChoiceBox>
+            <Button mnemonicParsing="false" text="Table" />
+            <Button mnemonicParsing="false" text="List" />
+            <Button mnemonicParsing="false" text="Page" />
+         </items></ToolBar>
+   </children>
+</AnchorPane>

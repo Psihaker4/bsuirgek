@@ -1,25 +1,23 @@
-import model.Student
+package com.agt.bsuirgek.server
+
+import com.agt.bsuirgek.server.parser.obj.Student
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.apache.poi.xwpf.usermodel.*
 import org.apache.poi.xwpf.usermodel.XWPFTableCell.XWPFVertAlign.*
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTFonts
 import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.*
-import java.util.Calendar.getInstance
 
-fun main(args: Array<String>) {
+fun main2(args: Array<String>) {
     println("Fucked up Server")
 
-    val inPath = "D:/test.xlsx"
+    val inPath = "D:/parserTest.xlsx"
     val outPath = "D:/testOUT.docx"
 
     val inputDateFormat = SimpleDateFormat("dd.MM.yyyy")
     val outputDateFormat = SimpleDateFormat("EEEE dd MMMM yyyy", Locale("ru"))
-    val startDate = getInstance().apply {
+    val startDate = Calendar.getInstance().apply {
         time = inputDateFormat.parse("14.6.2017")
         firstDayOfWeek = Calendar.MONDAY
     }
@@ -36,7 +34,7 @@ fun main(args: Array<String>) {
         val group = row.getCell(5).stringCellValue
         val payment = row.getCell(4).stringCellValue.removeSuffix("%").removePrefix(" ")
         val percent = payment.toIntOrNull() ?: 0
-        Student(names[0], names[1], names[2], average, percent, group)
+        Student()
     }
 
 
@@ -119,60 +117,29 @@ fun main(args: Array<String>) {
     }
 }
 
-fun Double.toInch() = (this*1440).toInt()
-fun Double.toBigInch(): BigInteger = BigInteger.valueOf(this.toInch().toLong())
+fun main3(args: Array<String>) {
+    val path = "D:/parserTest.docx"
 
-fun XWPFDocument.defaultFont(name : String) {
-    createStyles().setDefaultFonts(CTFonts.Factory.newInstance().apply { ascii = name })
+    val doc = XWPFDocument(FileInputStream(path))
+
+    val list = mutableListOf<String>()
+
+    doc.bodyElements.forEach {
+        when (it) {
+            is XWPFParagraph -> {
+                if (it.numLevelText == "%1.")
+                    list.add(it.text)
+//                println("PARAGRAPH ${list.size}")
+            }
+            is XWPFTable -> {
+//                println("TABLE\n${it.text}")
+            }
+        }
+    }
+    //${name3 - data}
+    list.forEach {
+        println(it.substringBefore('–'))
+    }
+
 }
 
-inline fun createDoc(block: XWPFDocument.() -> Unit) = XWPFDocument().apply(block)
-
-inline fun wrightDoc(path: String, block: XWPFDocument.() -> Unit) {
-    XWPFDocument().apply(block).write(FileOutputStream(path))
-}
-
-inline fun XWPFDocument.paragraph(stdBlock: XWPFParagraph.() -> Unit = {},
-                                  block: XWPFParagraph.() -> Unit = {}): XWPFParagraph {
-    return createParagraph().apply(stdBlock).apply(block)
-}
-
-inline fun XWPFParagraph.block(text:String = "", stdBlock: XWPFRun.() -> Unit = {},
-                               block: XWPFRun.() -> Unit = {}): XWPFRun {
-    val run = createRun().apply(stdBlock).apply(block)
-    run.setText(text)
-    return run
-}
-
-inline fun XWPFDocument.emptyParagraph(stdBlock: XWPFRun.() -> Unit = {}){ paragraph().block(" ", stdBlock)}
-
-fun createParagraphStyles(block: XWPFParagraph.() -> Unit) = block
-fun createBlockStyles(block: XWPFRun.() -> Unit) = block
-
-inline fun XWPFDocument.table(block: XWPFTable.() -> Unit = {}): XWPFTable = createTable().apply { removeRow(0) }.apply(block)
-
-inline fun XWPFTable.row(index: Int = -1, block: XWPFTableRow.() -> Unit = {}) :XWPFTableRow {
-    return (if (index > numberOfRows || index < 0) createRow() else getRow(index)).apply(block)
-}
-
-inline fun XWPFTableRow.cell(index: Int = -1, clear:Boolean = true,block: XWPFTableCell.() -> Unit = {}) :XWPFTableCell {
-    val cell = if (index > ctRow.sizeOfTcArray() - 1 || index < 0) createCell() else getCell(index)
-    if (clear) cell.apply { for (i in 0 until paragraphs.size) removeParagraph(0) }
-    return cell.apply(block)
-}
-
-inline fun XWPFTableCell.paragraph(stdBlock: XWPFParagraph.() -> Unit = {},
-                                  block: XWPFParagraph.() -> Unit = {}): XWPFParagraph {
-    return addParagraph().apply(stdBlock).apply(block)
-}
-fun XWPFTable.removeBorders() {
-    ctTbl.tblPr.unsetTblBorders()
-}
-
-fun XWPFTableRow.height(inches: Double) {
-    height = inches.toInch()
-}
-
-fun XWPFTableCell.width(inches : Double) {
-    ctTc.addNewTcPr().addNewTcW().w = inches.toBigInch()
-}
