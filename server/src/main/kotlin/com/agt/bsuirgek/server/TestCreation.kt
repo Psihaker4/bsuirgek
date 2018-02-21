@@ -1,6 +1,7 @@
 package com.agt.bsuirgek.server
 
-import com.agt.bsuirgek.server.parser.obj.Student
+import com.agt.bsuirgek.server.dsl.*
+import com.agt.bsuirgek.server.model.Student
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.apache.poi.xwpf.usermodel.*
 import org.apache.poi.xwpf.usermodel.XWPFTableCell.XWPFVertAlign.*
@@ -12,7 +13,7 @@ import java.util.Calendar.*
 fun main2(args: Array<String>) {
     println("Fucked up Server")
 
-    val inPath = "D:/parserTest.xlsx"
+    val inPath = "D:/parseTest.xlsx"
     val outPath = "D:/testOUT.docx"
 
     val inputDateFormat = SimpleDateFormat("dd.MM.yyyy")
@@ -29,6 +30,7 @@ fun main2(args: Array<String>) {
 
     val studs = (3..sheet.lastRowNum).map {
         val row = sheet.getRow(it)
+        row.getCell(0)
         val names = row.getCell(2).stringCellValue.removePrefix(" ").split(' ')
         val average = row.getCell(3).numericCellValue.toFloat()
         val group = row.getCell(5).stringCellValue
@@ -118,7 +120,7 @@ fun main2(args: Array<String>) {
 }
 
 fun main3(args: Array<String>) {
-    val path = "D:/parserTest.docx"
+    val path = "D:/parseTest.docx"
 
     val doc = XWPFDocument(FileInputStream(path))
 

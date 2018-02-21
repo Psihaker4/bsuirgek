@@ -1,7 +1,6 @@
-package com.agt.bsuirgek.server.utils
+package com.agt.bsuirgek.server.dsl
 
 import org.w3c.dom.Element
-import org.w3c.dom.NamedNodeMap
 import org.xml.sax.InputSource
 import java.io.StringReader
 import java.util.*
@@ -48,17 +47,9 @@ class Node(val name: String) {
     val children: List<Node>
         get() = _children
 
-    val childCount : Int
-        get() = _children.size
-
     fun add(node: Node) {
         _children.add(node)
     }
-
-    fun addAll(nodes: List<Node>) {
-        _children.addAll(nodes)
-    }
-
 
     inline operator fun String.invoke(vararg attributes: Pair<String, String>, init: Node.() -> Unit = {}) = Node(this).also { add(it) }.apply { attributes(*attributes); init() }
 
