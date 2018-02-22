@@ -3,7 +3,7 @@ package com.agt.bsuirgek.server.dao
 import org.jetbrains.exposed.dao.IntIdTable
 
 object Teachers : IntIdTable() {
-    val surname = varchar("surname", Int.MAX_VALUE).nullable()
+    val surname = varchar("surname", Int.MAX_VALUE)
     val name = varchar("name", Int.MAX_VALUE).nullable()
     val patronymic = varchar("patronymic", Int.MAX_VALUE).nullable()
     val data = varchar("data", Int.MAX_VALUE).nullable()
@@ -11,7 +11,7 @@ object Teachers : IntIdTable() {
 }
 
 object Students : IntIdTable() {
-    val surname = varchar("surname",Int.MAX_VALUE).nullable()
+    val surname = varchar("surname",Int.MAX_VALUE)
     val name = varchar("name",Int.MAX_VALUE).nullable()
     val patronymic = varchar("patronymic",Int.MAX_VALUE).nullable()
     val theme = varchar("theme",Int.MAX_VALUE).nullable()

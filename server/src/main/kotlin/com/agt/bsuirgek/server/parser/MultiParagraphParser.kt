@@ -19,7 +19,7 @@ class MultiParagraphParser(pattern: Node) : WordParser {
             when (it) {
                 is ParagraphParser -> it.parse(elems[0]).apply { elems.removeAt(0) }
                 is ListParser -> it.parse(elems).apply { (0 until objects.size).forEach { elems.removeAt(0) } }
-                else -> Error("ASD")
+                else -> Error("ASD","ERROR", emptyList())
             }
         }.simplify()
     }

@@ -4,7 +4,6 @@ import com.agt.bsuirgek.server.dao.Students
 import com.agt.bsuirgek.server.dao.Teachers
 import com.agt.bsuirgek.server.dsl.*
 import com.agt.bsuirgek.server.model.*
-import com.agt.bsuirgek.server.parser.ExcelTableParser
 import com.agt.bsuirgek.server.parser.ListParser
 import com.agt.bsuirgek.server.util.*
 import io.ktor.application.Application
@@ -20,17 +19,14 @@ import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import javafx.geometry.Pos
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils.create
 import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.File
 import java.io.FileInputStream
-import java.io.OutputStream
 import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
@@ -38,14 +34,13 @@ fun main(args: Array<String>) {
 
 //    test()
 
-    val data = parseTest(2)
-    println(data)
-//    structureData(data)
-//    parseTextXLSX(0)
+//    val data = parseTest(0)
+//    println(data)
+//    val d = parseTextXLSX(0)
+//    println(d)
+
 
 //    dbTest()
-
-//    local { testServer() }
 
 }
 
@@ -86,9 +81,9 @@ fun dbTest() {
         logger.addLogger(StdOutSqlLogger)
         create(Teachers, Students)
 
-//        val st = Students.insert {
-//            it[name] = "geel"
-//        }
+        Students.columns.forEach {
+            println(it.name)
+        }
 
     }
 }

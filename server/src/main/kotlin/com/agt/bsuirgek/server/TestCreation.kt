@@ -36,7 +36,7 @@ fun main2(args: Array<String>) {
         val group = row.getCell(5).stringCellValue
         val payment = row.getCell(4).stringCellValue.removeSuffix("%").removePrefix(" ")
         val percent = payment.toIntOrNull() ?: 0
-        Student()
+        Student("", emptyList())
     }
 
 

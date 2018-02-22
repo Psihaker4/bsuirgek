@@ -1,6 +1,6 @@
 package com.agt.bsuirgek.server.model
 
-class Teacher(id: Int = -1, linkId: List<Int> = emptyList()) : ObjectWithParams(id, linkId) {
+class Teacher(id: String, linkId: List<String>) : ObjectWithParams(id, linkId) {
 
     val surname by ParseMap()
     val name by ParseMap()

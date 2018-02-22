@@ -16,7 +16,12 @@ fun String.correct(): String {
         forEachIndexed { index, c ->
             if (startSpace && c != ' ') startSpace = false
             if (!startSpace) s.append(c)
-            if (c == '.' && index+1<length && !get(index + 1).isWhitespace() && !get(index + 1).isDigit()) s.append(" ")
+            if (
+                    c == '.' &&
+                    index + 1 < length &&
+                    !get(index + 1).isWhitespace() &&
+                    !get(index + 1).isDigit()
+            ) s.append(" ")
         }
     }.toString()
 
@@ -72,12 +77,12 @@ class Position(var row: Int, var cell: Int) {
 fun List<ParseObject>.simplify(): ParseObject {
     if (size == 1) return get(0)
 
-    val newnewList = groupBy { it.id }
+    val result = groupBy { it.id }
             .flatMap {
                 val list = it.value
                 val type = list[0]::class.simpleName ?: "Error Class"
 
-                val links = list.flatMap { it.linkId }.toSet().filter { it != -1 }
+                val links = list.flatMap { it.linkId }.toSet().filter { it.isNotEmpty() }
 
                 val tempObj = ObjectFactory.create(type, it.key, links)
                 if (tempObj is Error) return@flatMap list
@@ -85,29 +90,35 @@ fun List<ParseObject>.simplify(): ParseObject {
                 val objs = list as List<ObjectWithParams>
 
                 listOf(objs.fold(tempObj) { obj, addObj ->
-
-                    addObj.params.forEach {
-                        if (obj[it.key] == null) obj[it.key] = it.value
-                        else return@flatMap list
-                    }
-
+                    addObj.params.forEach { if (obj[it.key] == null) obj[it.key] = it.value else return@flatMap list }
                     obj
                 })
-
             }
             .filter {
                 when (it) {
                     is ListObject -> it.objects.isNotEmpty()
-                    is ObjectWithParams -> {
-                        it.params.isNotEmpty()
-                    }
+                    is ObjectWithParams -> !it.isParamsEmpty()
                     else -> true
                 }
             }
+            .run {
+                fold(toMutableList()) { newList, obj ->
+                    val list = obj.linkId.mapNotNull { id -> firstOrNull { it.id == id } }
 
-    return when (newnewList.size) {
+                    if (list.size == 1) {
+                        obj.linkedObject = list[0]
+                        newList.remove(list[0])
+                    } else if (list.size > 1) {
+                        obj.linkedObject = ListObject(list)
+                        newList.removeAll(list)
+                    }
+                    newList
+                }
+            }
+
+    return when (result.size) {
         0 -> ListObject(this)
-        1 -> newnewList[0]
-        else -> ListObject(newnewList)
+        1 -> result[0]
+        else -> ListObject(result)
     }
 }

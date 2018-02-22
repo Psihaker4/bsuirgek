@@ -20,11 +20,9 @@ class ExcelTableParser(pattern: Node) : ExcelParser {
 
     fun parse(sheet: XSSFSheet, startPosition: Position): ListObject {
         val rowRange = (startPosition.row until sheet.lastRowNum)
-        println(sheet.lastRowNum)
         return ListObject(rowRange
                 .filter { !skippedLines.contains(it - startPosition.row) }
                 .fold(mutableListOf()) { rowList, rowIndex ->
-                    println(rowIndex)
                     val row = sheet.getRow(rowIndex) ?: return ListObject(rowList)
                     val cellRange = (startPosition.cell until row.lastCellNum)
                     rowList += cellRange.fold(mutableListOf<ParseObject>()) { cellList, cellIndex ->

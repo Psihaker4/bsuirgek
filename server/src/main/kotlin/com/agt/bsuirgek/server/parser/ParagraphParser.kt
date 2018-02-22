@@ -15,9 +15,9 @@ class ParagraphParser(pattern: Node) : WordParser, ExcelParser {
     fun parse(text: String) : ParseObject {
         var temp = text
         return parsers.foldIndexed(mutableListOf<ObjectWithParams>()) { index, list, parser ->
-            if (parser.tag.isNotEmpty()) temp = temp.substringAfter(parser.tag)
+            if (parser["t"].isNotEmpty()) temp = temp.substringAfter(parser["t"])
             else {
-                val txt = if (index < parsers.size - 1) temp.substringBefore(parsers[index + 1].tag) else temp
+                val txt = if (index < parsers.size - 1) temp.substringBefore(parsers[index + 1]["t"]) else temp
                 list += parser.parse(txt)
             }
             list

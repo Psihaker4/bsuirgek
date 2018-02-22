@@ -1,6 +1,7 @@
 apply plugin: 'kotlin'
 
 dependencies {
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'no.tornado:tornadofx:1.7.14'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     testImplementation 'junit:junit:4.12'

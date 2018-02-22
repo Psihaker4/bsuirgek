@@ -1,22 +1,24 @@
 package com.agt.bsuirgek.server.model
 
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-open class ParseObject(val id: Int, val linkId: List<Int>) {
-//    constructor(id: Int, linkId: Int) : this(id, listOf(linkId))
-
-    lateinit var linkedObject: ParseObject
+abstract class ParseObject(val id: String, val linkId: List<String>) {
+    var linkedObject: ParseObject? = null
     override fun toString(): String {
-        return "$id/$linkId - "
+        return "$id/$linkId($linkedObject) - "
     }
-
 }
-abstract class ObjectWithParams(id: Int, linkId: List<Int>) : ParseObject(id, linkId) {
+
+abstract class ObjectWithParams(id: String, linkId: List<String>) : ParseObject(id, linkId) {
 
     protected class ParseMap : ReadOnlyProperty<ObjectWithParams, String> {
         override fun getValue(thisRef: ObjectWithParams, property: KProperty<*>) = thisRef.params[property.name] ?: ""
     }
+
+    lateinit var tags: Map<String,String>
 
     private val _params = mutableMapOf<String, String>()
     val params: Map<String, String>
@@ -28,29 +30,45 @@ abstract class ObjectWithParams(id: Int, linkId: List<Int>) : ParseObject(id, li
 
     operator fun get(argument: String) = _params[argument]
 
-    fun isEmpty() = _params.values.fold(true) { value, param ->
-        if (param.isNotEmpty()) return@fold false
-        else true
+    val type by ParseMap()
+
+    fun isParamsEmpty(): Boolean {
+        _params.values.forEach {
+            if (it != "") return false
+        }
+        return true
     }
 }
 
 object ObjectFactory {
-    fun create(type: String, id: Int = -1, linkId: List<Int> = emptyList()) = when (type) {
+    fun create(type: String, id: String, linkId: List<String>) = when (type) {
         "Teacher" -> Teacher(id, linkId)
         "Student" -> Student(id, linkId)
+        "Calendar" -> CalendarObject(id, linkId)
         else -> Error(type, id, linkId)
     }
 }
 
-class Error(errorObject: String, id: Int = -1, linkId: List<Int> = emptyList()) : ObjectWithParams(id,linkId) {
+class Error(errorObject: String, id: String, linkId: List<String>) : ObjectWithParams(id,linkId) {
     val text = "NO SUCH OBJECT: $errorObject"
     override fun toString() = super.toString() + "Error('$text')"
 }
 
-class ListObject(val objects : List<ParseObject>, id: Int = -1, linkId: List<Int> = emptyList()): ParseObject(id, linkId) {
+class ListObject(val objects : List<ParseObject>, id: String = "", linkId: List<String> = emptyList()): ParseObject(id, linkId) {
     override fun toString() = super.toString() +  objects
             .fold("LIST${objects.size}:\n") { string, nextObject -> "$string$nextObject\n" }
             .trim()
 }
 
-class CustomObject(val objectType: String, id: Int = -1, linkId: List<Int> = emptyList()) : ObjectWithParams(id, linkId)
+class CalendarObject(id: String, linkId: List<String>): ObjectWithParams(id, linkId) {
+    val time by ParseMap()
+    val date by ParseMap()
+
+    fun getTime() = Calendar.getInstance().also { it.time = SimpleDateFormat(tags["tf"]).parse(time) }
+    fun getDate() = Calendar.getInstance().also { it.time = SimpleDateFormat(tags["df"]).parse(date) }
+    override fun toString(): String {
+        return super.toString() + "Calendar($time // $date)"
+    }
+}
+
+class CustomObject(val objectType: String, id: String, linkId: List<String>) : ObjectWithParams(id, linkId)
