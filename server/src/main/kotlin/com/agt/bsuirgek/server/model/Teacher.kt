@@ -1,18 +1,20 @@
 package com.agt.bsuirgek.server.model
 
-class Teacher(id: String, linkId: List<String>) : ObjectWithParams(id, linkId) {
+import org.jetbrains.exposed.dao.IntIdTable
 
-    val surname by ParseMap()
-    val name by ParseMap()
-    val patronymic by ParseMap()
-    val data by ParseMap()
-    val phone by ParseMap()
+class Teacher(map: Map<String, String>) {
+    val surname = map["surname"]
+    val name = map["name"]
+    val patronymic = map["patronymic"]
+    val data = map["data"]
+    val phone = map["phone"]
+    override fun toString() = "Teacher($surname;$name;$patronymic;$data;$phone)"
+}
 
-    val fullName by lazy { "$surname $name $patronymic" }
-    val nameInitials by lazy { "$surname ${name[0]}. ${patronymic[0]}." }
-
-    override fun toString(): String {
-        return super.toString() + "Teacher($surname,$name,$patronymic,$data,$phone)"
-    }
-
+object Teachers : IntIdTable() {
+    val surname = varchar("surname", Int.MAX_VALUE)
+    val name = varchar("name", Int.MAX_VALUE).nullable()
+    val patronymic = varchar("patronymic", Int.MAX_VALUE).nullable()
+    val data = varchar("data", Int.MAX_VALUE).nullable()
+    val phone = varchar("phone", Int.MAX_VALUE).nullable()
 }

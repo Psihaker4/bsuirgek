@@ -7,49 +7,35 @@ import org.apache.poi.xwpf.usermodel.IBodyElement
 import org.apache.poi.xwpf.usermodel.XWPFParagraph
 import org.apache.poi.xwpf.usermodel.XWPFTable
 
-interface Parser {
+interface Parser
 
-    companion object {
-        inline fun <reified T:Parser> create(pattern: Node): T {
-            println("Parser_${pattern.name}:${pattern.children.map { it.format() }}")
-            return when (pattern.name) {
-                "List" -> ListParser(pattern)
-                "Table" -> {
-                    if (T::class == WordParser::class) WordTableParser(pattern)
-                    else ExcelTableParser(pattern)
-                }
-                "Multi", "Cell" -> MultiParagraphParser(pattern)
-                "Paragraph" -> ParagraphParser(pattern)
-                else -> throw Throwable("NO PARSER")
-            } as T
-        }
-    }
+fun Node.toWordParser() = when (name) {
+    "List" -> ListParser(this)
+    "Multi" -> MultiParagraphParser(this)
+    "Table" -> WordTableParser(this)
+    "Paragraph" -> ParagraphParser(this)
+    else -> throw Throwable("No such Word Parser")
+}
+
+fun Node.toExcelParser() = when (name) {
+    "Table" -> ExcelTableParser(this)
+    "Paragraph" -> ParagraphParser(this)
+    else -> throw Throwable("No such Excel Parser")
 }
 
 interface WordParser : Parser {
-    fun run(elements: List<IBodyElement>, shift: Int) = when (this) {
-        is ParagraphParser -> {
-            parse(elements[shift] as XWPFParagraph)
-        }
-        is ListParser -> {
-            parse(elements.drop(shift) as List<XWPFParagraph>)
-        }
-        is WordTableParser -> {
-            parse(elements[shift] as XWPFTable)
-        }
+    fun run(elements: List<IBodyElement>, shift: Position) = when (this) {
+        is ParagraphParser -> parse(elements[shift.row] as XWPFParagraph)
+        is ListParser -> parse(elements.drop(shift.row) as List<XWPFParagraph>).apply { shift.add(Position(objects.size - 1, 0)) }
+        is WordTableParser -> parse(elements[shift.row] as XWPFTable)
         else -> throw Throwable("PARSE ERROR")
     }
 }
 
 interface ExcelParser : Parser {
     fun run(sheet: XSSFSheet, shift: Position) = when (this) {
-        is ParagraphParser -> {
-            println(shift)
-            parse(sheet.getRow(shift.row).getCell(shift.cell).toString())
-        }
-        is ExcelTableParser -> {
-            parse(sheet, shift)
-        }
+        is ParagraphParser -> parse(sheet.getRow(shift.row).getCell(shift.cell).toString())
+        is ExcelTableParser -> parse(sheet, shift)
         else -> throw Throwable("PARSE ERROR")
     }
 }
