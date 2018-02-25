@@ -1,16 +1,12 @@
 package com.agt.bsuirgek.server.parser
 
-import com.agt.bsuirgek.server.model.ListObject
 import com.agt.bsuirgek.server.dsl.Node
-import com.agt.bsuirgek.server.model.ParseObject
 import com.agt.bsuirgek.server.util.simplify
 import org.apache.poi.xwpf.usermodel.XWPFTable
 
 class WordTableParser(pattern: Node) : WordParser {
 
-    val id = pattern["id"]
-    val linkId = if (pattern["lid"].isEmpty()) emptyList() else pattern["lid"].split(",")
-
+    val data = ObjectData(pattern)
     private val skippedLines: List<Int>
     private val parsers: List<MultiParagraphParser>
 
@@ -21,7 +17,7 @@ class WordTableParser(pattern: Node) : WordParser {
     }
 
     fun parse(table: XWPFTable): ListObject {
-        val obj = table.rows
+        val list = table.rows
                 .filterIndexed { index, _ -> !skippedLines.contains(index) }
                 .fold(mutableListOf<ParseObject>()) { list, row ->
                     list += row.tableCells.foldIndexed(mutableListOf<ParseObject>()) { index, cells, cell ->
@@ -29,9 +25,9 @@ class WordTableParser(pattern: Node) : WordParser {
                         cells
                     }.simplify()
                     list
-                }.simplify()
+                }
 
-        return if (obj is ListObject) obj
-        else ListObject(listOf(obj), id, linkId)
+        return ListObject(list, data)
     }
+
 }

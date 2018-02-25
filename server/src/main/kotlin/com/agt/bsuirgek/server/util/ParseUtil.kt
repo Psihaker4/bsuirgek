@@ -1,14 +1,33 @@
 package com.agt.bsuirgek.server.util
 
 import com.agt.bsuirgek.server.dsl.toXML
-import com.agt.bsuirgek.server.model.*
-import com.agt.bsuirgek.server.parser.ExcelParser
-import com.agt.bsuirgek.server.parser.Parser
-import com.agt.bsuirgek.server.parser.WordParser
+import com.agt.bsuirgek.server.parser.*
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.apache.poi.xwpf.usermodel.XWPFParagraph
 import org.apache.poi.xwpf.usermodel.XWPFTable
+import java.io.FileInputStream
+
+fun String.asDOCX() = XWPFDocument(FileInputStream(this))
+
+fun String.asXLSX() = XSSFWorkbook(FileInputStream(this))
+
+fun String.openAndParseDOCX(temp: String) = asDOCX().parseAs(temp.asDOCX())
+fun String.openAndParseXLSX(temp: String) = asXLSX().parseAs(temp.asXLSX())
+
+fun XSSFWorkbook.parseAs(template: XSSFWorkbook) = template.parsers.map { sheet ->
+    var shift = Position(0, 0)
+    sheet.map {
+        it.second.run(getSheetAt(0), shift + it.first).apply { if (this is ListObject) shift += Position(objects.size, 0) }
+    }
+}
+
+fun XWPFDocument.parseAs(template: XWPFDocument): List<ParseObject> {
+    val shift = Position(0,0)
+    return template.parsers.map {
+        it.second.run(bodyElements, shift + Position(1, 0))
+    }
+}
 
 fun String.correct(): String {
     var startSpace = true
@@ -32,85 +51,94 @@ private val regex = "\\$\\{(.+?)}".toRegex()
 
 fun String.findPatterns() = regex.findAll(this).map { it.groupValues[1] }.toList()
 
-fun String.createIndexedParsers(index: Int) = findPatterns().map { index to Parser.create<WordParser>(it.toXML()) }
+fun String.createWordParsers(index: Int) = findPatterns().map { index to it.toXML().toWordParser() }
 
-fun String.createPositionedParsers(pos: Position) = findPatterns().map { pos to Parser.create<ExcelParser>(it.toXML()) }
+fun String.createExcelParsers(pos: Position) = findPatterns().map { pos to it.toXML().toExcelParser() }
 
-fun XWPFDocument.findPatterns() = bodyElements
-        .map {
-            when (it) {
-                is XWPFParagraph -> it.text.findPatterns()
-                is XWPFTable -> it.text.findPatterns()
-                else -> emptyList()
+val XWPFDocument.parsers: List<Pair<Int, WordParser>>
+get() = bodyElements
+        .foldIndexed(mutableListOf()) { index, list, element ->
+            val text = when (element) {
+                is XWPFParagraph -> element.text
+                is XWPFTable -> element.text
+                else -> throw Throwable("Failed Word Parser")
             }
-        }.flatMap { it }
+            list += text.createWordParsers(index)
+            list
+        }
 
-
-fun XWPFDocument.indexedParsers() = bodyElements
-        .mapIndexed { index, element ->
-            when (element) {
-                is XWPFParagraph -> element.text.createIndexedParsers(index)//.apply { println(element.text) }
-                is XWPFTable -> element.text.createIndexedParsers(index)//.apply { println(element.text) }
-                else -> emptyList()
-            }
-        }.flatMap { it }
-
-fun XSSFWorkbook.positionedParsers(): List<List<Pair<Position, ExcelParser>>> {
+val XSSFWorkbook.parsers: List<List<Pair<Position, ExcelParser>>>
+get() {
     val sheets = mutableListOf<List<Pair<Position, ExcelParser>>>()
     sheetIterator().forEach { sheet ->
-        val list = mutableListOf<List<Pair<Position, ExcelParser>>>()
-        sheet.rowIterator().forEach { row ->
-            row.cellIterator().forEach {
-                list.add(it.toString().createPositionedParsers(Position(row.rowNum, it.columnIndex)))
+        val list = mutableListOf<Pair<Position, ExcelParser>>()
+        sheet.rowIterator().forEach {
+            val rowIndex = it.rowNum
+            it.cellIterator().forEach {
+                list += it.toString().createExcelParsers(Position(rowIndex, it.columnIndex))
             }
         }
-        sheets.add(list.flatMap { it })
+        sheets += list
     }
     return sheets
 }
 
 class Position(var row: Int, var cell: Int) {
     override fun toString() = "($row, $cell)"
+    fun add(pos: Position) {
+        row+=pos.row
+        cell+=pos.cell
+    }
     operator fun plus(pos: Position) = Position(row + pos.row, cell + pos.cell)
 }
 
 fun List<ParseObject>.simplify(): ParseObject {
     if (size == 1) return get(0)
 
-    val result = groupBy { it.id }
-            .flatMap {
+    val result = groupBy { it.data.id }
+            .map {
                 val list = it.value
-                val type = list[0]::class.simpleName ?: "Error Class"
+                val type = list[0].data.type
 
-                val links = list.flatMap { it.linkId }.toSet().filter { it.isNotEmpty() }
+                val id = it.key
+                val linkId = list.flatMap { it.data.linkIds }.toSet().filter { it.isNotEmpty() }
+                val tags = list.fold(mutableMapOf<String, String>()) { map, obj ->
+                    obj.data.tags.forEach { key, value ->
+                        if (map[key] == null) map[key] = value
+                        else map[key] = "${map[key]}/$value"
+                    }
+                    map
+                }
 
-                val tempObj = ObjectFactory.create(type, it.key, links)
-                if (tempObj is Error) return@flatMap list
+                val data = ObjectData(type, id, linkId, tags)
 
-                val objs = list as List<ObjectWithParams>
-
-                listOf(objs.fold(tempObj) { obj, addObj ->
-                    addObj.params.forEach { if (obj[it.key] == null) obj[it.key] = it.value else return@flatMap list }
-                    obj
-                })
+                if (list[0] is MapObject) {
+                    val params = (list as List<MapObject>).fold(mutableMapOf<String, String>()) { map, obj ->
+                        obj.params.forEach { key, value ->
+                            if (map[key] == null) map[key] = value
+                            else map[key] = "${map[key]}/$value"
+                        }
+                        map
+                    }
+                    MapObject(params, data)
+                } else {
+                    val objects = (list as List<ListObject>).flatMap { it.objects }
+                    ListObject(objects, data)
+                }
             }
             .filter {
                 when (it) {
                     is ListObject -> it.objects.isNotEmpty()
-                    is ObjectWithParams -> !it.isParamsEmpty()
-                    else -> true
+                    is MapObject -> it.params.isNotEmpty()
+                    else -> throw Throwable("Never happens")
                 }
             }
             .run {
                 fold(toMutableList()) { newList, obj ->
-                    val list = obj.linkId.mapNotNull { id -> firstOrNull { it.id == id } }
-
-                    if (list.size == 1) {
-                        obj.linkedObject = list[0]
-                        newList.remove(list[0])
-                    } else if (list.size > 1) {
-                        obj.linkedObject = ListObject(list)
-                        newList.removeAll(list)
+                    val list = obj.data.linkIds.mapNotNull { id -> firstOrNull { it.data.id == id } }
+                    if (list.isNotEmpty()) {
+                        obj.links = list
+                        newList -= list
                     }
                     newList
                 }
@@ -122,3 +150,4 @@ fun List<ParseObject>.simplify(): ParseObject {
         else -> ListObject(result)
     }
 }
+

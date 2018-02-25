@@ -1,20 +1,24 @@
 package com.agt.bsuirgek.server.model
 
-class Student(id: String, linkId: List<String>) : ObjectWithParams(id, linkId) {
+import org.jetbrains.exposed.dao.IntIdTable
 
-    val surname by ParseMap()
-    val name by ParseMap()
-    val patronymic by ParseMap()
-    val theme by ParseMap()
-    val group by ParseMap()
-    val average by ParseMap()
-    val paymentPercent by ParseMap()
+class Student(val map: Map<String, String>) {
+    val surname = map["surname"]
+    val name = map["name"]
+    val patronymic = map["patronymic"]
+    val theme = map["theme"]
+    val group = map["group"]
+    val average = map["average"]
+    val paymentPercent = map["paymentPercent"]
+    override fun toString() = "Student($surname;$name;$patronymic;$theme;$group;$average;$paymentPercent)"
+}
 
-    val fullName by lazy { "$surname $name $patronymic" }
-    val nameInitials by lazy { "$surname ${name[0]}. ${patronymic[0]}." }
-
-    override fun toString(): String {
-        return super.toString() + "Student($surname,$name,$patronymic,$group,$paymentPercent,$average,$theme)"
-    }
-
+object Students : IntIdTable() {
+    val surname = varchar("surname",Int.MAX_VALUE)
+    val name = varchar("name",Int.MAX_VALUE).nullable()
+    val patronymic = varchar("patronymic",Int.MAX_VALUE).nullable()
+    val theme = varchar("theme",Int.MAX_VALUE).nullable()
+    val group = varchar("group",Int.MAX_VALUE).nullable()
+    val average = varchar("average",Int.MAX_VALUE).nullable()
+    val paymentPercent = varchar("paymentPercent",Int.MAX_VALUE).nullable()
 }
