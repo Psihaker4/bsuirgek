@@ -6,6 +6,6 @@ import tornadofx.App
 
 class Startup : App(MainView::class)
 
-fun main(args: Array<String>) {
+fun main322(args: Array<String>) {
     Application.launch(Startup::class.java, *args)
 }
