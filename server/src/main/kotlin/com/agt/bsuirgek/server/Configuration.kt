@@ -10,12 +10,23 @@ enum class Configuration(val rootPath: String,
                          val port: Int,
                          val mysqlPort: Int) {
     Local("D:/", "localhost", 8080, 3306),
-    Server("/trimple/omega", "deadmedia.ru", 8080, 3306);
+    Server("/home/trimple/bsuirgek/", "37.187.116.151", 8080, 3306);
 
-    fun connectDB() {
-        Database.connect("jdbc:mysql://$url:$mysqlPort/bsuirgek?useSSL=false", "com.mysql.jdbc.Driver", "serverUser", "avantgarde")
+    lateinit var password: String
+    lateinit var user: String
+    fun init(args: Array<String>) = try {
+        user = args[0]
+        password = args[1]
+        true
+    } catch (e: Exception) {
+        println("Error: $e")
+        false
     }
 
-    fun startServer(body: Application.() -> Unit) = embeddedServer(Netty, port, url, module = body).start(true)
+    fun connectDb() = Database.connect("jdbc:mysql://$url:$mysqlPort/bsuir?useSSL=false", "com.mysql.jdbc.Driver", user, password)
+    //"bsuirServer"
+    //"avantgarde"
+
+    fun startServer(body: Application.(Configuration) -> Unit) = embeddedServer(Netty, port, url) { body(this, this@Configuration) }.start(true)
 
 }
