@@ -1,13 +1,10 @@
-package com.agt.bsuirgek.server
+package com.agt.bsuirgek.server.test
 
-import com.agt.bsuirgek.server.dsl.*
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.apache.poi.xwpf.usermodel.*
-import org.apache.poi.xwpf.usermodel.XWPFTableCell.XWPFVertAlign.*
 import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Calendar.*
 
 fun main2(args: Array<String>) {
     println("Fucked up Server")

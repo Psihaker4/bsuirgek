@@ -1,4 +1,4 @@
-package com.agt.bsuirgek.server.dsl
+package com.agt.bsuirgek.server.test
 
 import org.apache.poi.xwpf.usermodel.*
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTFonts
