@@ -42,7 +42,7 @@ public class ProcesingRequests {
         });
     }
 
-    public static void getData(Queries req, File dile){
+    public static void getData(){
 
         Gson gson = new Gson();
 

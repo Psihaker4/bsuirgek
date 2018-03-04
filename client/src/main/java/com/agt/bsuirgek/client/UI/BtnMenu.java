@@ -22,11 +22,12 @@ public class BtnMenu {
         this.hboxMain = hboxMain;
 
         btnMenu = new Button();
-        btnMenu.setPrefSize(80,80);
-        btnMenu.setMinSize(80,80);
-        btnMenu.setMaxSize(80,80);
+        btnMenu.setPrefSize(63,63);
+        btnMenu.setMinSize(63,63);
+        btnMenu.setMaxSize(63,63);
+        btnMenu.setId("btnMain");
 
-        hboxMain.getChildren().add(btnMenu);
+        hboxMain.getChildren().add(0, btnMenu);
 
         vboxForElements = new VBox();
         vboxForElements.setPrefWidth(width);
@@ -59,6 +60,10 @@ public class BtnMenu {
 
     public HBox getMainHBox(){
         return hboxMain;
+    }
+
+    public void setBtnStyle(String a){
+        btnMenu.setStyle(a);
     }
 
 
