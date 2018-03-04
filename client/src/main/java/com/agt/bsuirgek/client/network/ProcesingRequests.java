@@ -1,7 +1,13 @@
 package com.agt.bsuirgek.client.network;
 
 import com.agt.bsuirgek.client.Object.Data;
+import com.agt.bsuirgek.client.model.Student;
+import com.agt.bsuirgek.client.model.Teacher;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -11,6 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.io.File;
+import java.util.Map;
 
 public class ProcesingRequests {
 
@@ -36,8 +43,27 @@ public class ProcesingRequests {
     }
 
     public static void getData(Queries req, File dile){
-        Gson g = new Gson();
-        Data data = g.fromJson("file", Data.class);
+
+        Gson gson = new Gson();
+
+        String json = "some json";
+
+        JsonParser parser = new JsonParser();
+        JsonArray array = parser.parse(json).getAsJsonArray();
+
+        array.forEach(jsonElement -> {
+            JsonObject obj = jsonElement.getAsJsonObject();
+
+            Map<String,String> map = gson.fromJson(obj.get("params"),new TypeToken<Map<String,String>>(){}.getType());
+            String type = obj.get("type").getAsString();
+
+            switch (type) {
+                case "Teacher" : System.out.println(new Teacher(map));
+                case "Student" : System.out.println(new Student(map));
+            }
+
+        });
+
 
 
     }
