@@ -1,5 +1,8 @@
 package com.agt.bsuirgek.client.Controller;
 
+import com.agt.bsuirgek.client.UI.BtnMenu;
+import com.agt.bsuirgek.client.UI.VBoxForCooseTemplate;
+import com.agt.bsuirgek.client.UI.VBoxForLoadFile;
 import com.agt.bsuirgek.client.network.Queries;
 import com.agt.bsuirgek.client.network.ServiceGenerator;
 import javafx.event.ActionEvent;
@@ -7,36 +10,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import net.ButtonForMenuController;
-import net.PartMenu;
+import javafx.scene.layout.VBox;
 
 
 public class Controller {
 
-    Queries req = ServiceGenerator.createService(Queries.class);
-
-    private PartMenu partMenu = new PartMenu();
+    public static Queries req = ServiceGenerator.createService(Queries.class);
 
     @FXML
-    public Button btnMenuFirst;
+    private VBox vBoxForMenuBtn;
 
     @FXML
-    public HBox idHBox;
-
-    @FXML
-    public ButtonForMenuController btnMenu;
-
-    @FXML
-    public Pane mainPane;
+    private Pane mainPane;
 
     @FXML
     public void initialize() {
-        BtnMainMenuController btnMainMenu = new BtnMainMenuController();
-        //MenuLoadFileController btnMainMenu = new MenuLoadFileController();
-        btnMainMenu.setLayoutX(400);
-        btnMainMenu.setLayoutY(400);
+        HBox btn = new BtnMenu(new VBoxForLoadFile().getMainVBox()).getMainHBox();
+        vBoxForMenuBtn.getChildren().add(btn);
 
-        mainPane.getChildren().add(btnMainMenu);
+        VBox temp = new VBoxForCooseTemplate().getVBox();
+        temp.setLayoutX(400);
+        temp.setLayoutY(400);
+        mainPane.getChildren().add(temp);
     }
 
     public void btnClick(ActionEvent actionEvent) {
@@ -46,11 +41,6 @@ public class Controller {
 
         switch (clickButton.getId()) {
             case "btnMenuFirst": {
-                //ProcesingRequests.uploadFile(req);
-
-                idHBox.getChildren().add(new PartMenu());
-
-                btnMenu.setPartMenu(new PartMenu());
                 break;
             }
         }

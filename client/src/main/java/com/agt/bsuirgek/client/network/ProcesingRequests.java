@@ -12,9 +12,7 @@ import java.io.File;
 
 public class ProcesingRequests {
 
-    public static void uploadFile(Queries req) {
-        File file = new File("C://ilya/image.png");
-
+    public static void uploadFile(Queries req, File file) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
