@@ -12,19 +12,18 @@ import java.io.File;
 public class VBoxForLoadFile {
 
     private VBox vboxMain;
-    private File choosedFile;
-
     private Button btnLoad;
     private Button btnOk;
-    private Button btnCancel;
+
     private VBoxForLoadFileController controller = new VBoxForLoadFileController();
+    private File choosedFile;
 
     public VBoxForLoadFile(){
 
         VBox mainVBox = new VBox();
-        mainVBox.setPrefSize(200,75);
-        mainVBox.setMinSize(200,75);
-        mainVBox.setMaxSize(200,75);
+        mainVBox.setPrefSize(200,175);
+        mainVBox.setMinSize(200,175);
+        mainVBox.setMaxSize(200,175);
 
         HBox hboxLoadFile = new HBox();
         hboxLoadFile.setPrefSize(200,40);
@@ -44,7 +43,7 @@ public class VBoxForLoadFile {
         AnchorPane.setRightAnchor(tfWay, 5.0);
         AnchorPane.setBottomAnchor(tfWay, 5.0);
         AnchorPane.setLeftAnchor(tfWay, 5.0);
-        anchorTextField.setStyle("-fx-background-color: #cf1020");
+        anchorTextField.setStyle("-fx-background-color: #666666");
         anchorTextField.getChildren().add(tfWay);
         hboxLoadFile.getChildren().add(anchorTextField);
 
@@ -65,9 +64,13 @@ public class VBoxForLoadFile {
         AnchorPane.setRightAnchor(btnLoad, 5.0);
         AnchorPane.setBottomAnchor(btnLoad, 5.0);
         AnchorPane.setLeftAnchor(btnLoad, 0.0);
-        anchorBtnLoad.setStyle("-fx-background-color: #cf1020");
+        anchorBtnLoad.setStyle("-fx-background-color: #666666");
         anchorBtnLoad.getChildren().add(btnLoad);
         hboxLoadFile.getChildren().add(anchorBtnLoad);
+        mainVBox.getChildren().add(hboxLoadFile);
+
+        VBox vboxChooseTemplate = new VBoxForCooseTemplate().getVBox();
+        mainVBox.getChildren().add(vboxChooseTemplate);
 
         HBox hboxBtnOkCancel = new HBox();
         hboxBtnOkCancel.setPrefSize(200,35);
@@ -85,39 +88,18 @@ public class VBoxForLoadFile {
         });
 
         AnchorPane anchorBtnOk = new AnchorPane();
-        anchorBtnOk.setPrefSize(135,35);
-        anchorBtnOk.setMinSize(135,35);
-        anchorBtnOk.setMaxSize(135,35);
-        AnchorPane.setTopAnchor(btnOk, 0.0);
-        AnchorPane.setRightAnchor(btnOk, 20.0);
+        anchorBtnOk.setPrefSize(200,35);
+        anchorBtnOk.setMinSize(200,35);
+        anchorBtnOk.setMaxSize(200,35);
+        AnchorPane.setTopAnchor(btnOk, 5.0);
+        AnchorPane.setRightAnchor(btnOk, 5.0);
         AnchorPane.setBottomAnchor(btnOk, 5.0);
-        AnchorPane.setLeftAnchor(btnOk, 55.0);
-        anchorBtnOk.setStyle("-fx-background-color: #cf1020");
+        AnchorPane.setLeftAnchor(btnOk, 135.0);
+        anchorBtnOk.setStyle("-fx-background-color: #666666");
         anchorBtnOk.getChildren().add(btnOk);
         hboxBtnOkCancel.getChildren().add(anchorBtnOk);
 
-        Button btnCancel = new Button("Отмена");
-        this.btnCancel = btnCancel;
-        btnCancel.setPrefSize(60,30);
-        btnCancel.setMinSize(60,30);
-        btnCancel.setMaxSize(60,30);
-        btnCancel.setOnAction(event -> {
-            controller.actionBtnCancel(tfWay, btnOk);
-        });
-
-        AnchorPane anchorBtnCancel = new AnchorPane();
-        anchorBtnCancel.setPrefSize(65,35);
-        anchorBtnCancel.setMinSize(65,35);
-        anchorBtnCancel.setMaxSize(65,35);
-        AnchorPane.setTopAnchor(btnCancel, 0.0);
-        AnchorPane.setRightAnchor(btnCancel, 5.0);
-        AnchorPane.setBottomAnchor(btnCancel, 5.0);
-        AnchorPane.setLeftAnchor(btnCancel, 0.0);
-        anchorBtnCancel.setStyle("-fx-background-color: #cf1020");
-        anchorBtnCancel.getChildren().add(btnCancel);
-        hboxBtnOkCancel.getChildren().add(anchorBtnCancel);
-
-        mainVBox.getChildren().addAll(hboxLoadFile, hboxBtnOkCancel);
+        mainVBox.getChildren().add(hboxBtnOkCancel);
 
         vboxMain = mainVBox;
     }

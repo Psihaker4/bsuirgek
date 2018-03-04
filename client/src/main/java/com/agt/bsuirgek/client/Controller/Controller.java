@@ -25,6 +25,7 @@ public class Controller {
 
     @FXML
     public void initialize() {
+        mainPane.setStyle("-fx-background-color: #424242");
         HBox btn = new BtnMenu(new VBoxForLoadFile().getMainVBox()).getMainHBox();
         vBoxForMenuBtn.getChildren().add(btn);
 

@@ -1,5 +1,7 @@
 package com.agt.bsuirgek.client.network;
 
+import com.agt.bsuirgek.client.Object.Data;
+import com.google.gson.Gson;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -31,5 +33,12 @@ public class ProcesingRequests {
                 System.out.println("error");
             }
         });
+    }
+
+    public static void getData(Queries req, File dile){
+        Gson g = new Gson();
+        Data data = g.fromJson("file", Data.class);
+
+
     }
 }

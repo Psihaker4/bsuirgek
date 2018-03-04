@@ -27,11 +27,6 @@ public class VBoxForLoadFileController {
 
     }
 
-    public void actionBtnCancel(TextField tfWayFile, Button btnCancel){
-        tfWayFile.clear();
-        btnCancel.setDisable(true);
-    }
-
     public void actionBtnOk(File file){
         ProcesingRequests.uploadFile(Controller.req, file);
     }
