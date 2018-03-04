@@ -10,8 +10,8 @@ import retrofit2.http.Part;
 
 public interface Queries {
 
-@Multipart
-@POST("upload")
-Call<ResponseBody> upload(@Part() MultipartBody.Part image);
+    @Multipart
+    @POST("upload")
+    Call<ResponseBody> upload(@Part() MultipartBody.Part image);
 
 }
