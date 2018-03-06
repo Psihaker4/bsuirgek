@@ -1,8 +1,7 @@
 package com.agt.bsuirgek.client.Controller;
 
 import com.agt.bsuirgek.client.UI.BtnMenu;
-import com.agt.bsuirgek.client.UI.VBoxForCooseTemplate;
-import com.agt.bsuirgek.client.UI.VBoxForLoadFile;
+import com.agt.bsuirgek.client.UI.MainMenu;
 import com.agt.bsuirgek.client.network.ProcesingRequests;
 import com.agt.bsuirgek.client.network.Queries;
 import com.agt.bsuirgek.client.network.ServiceGenerator;
@@ -28,15 +27,13 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        //mainPane.setStyle("-fx-background-color: #424242");
-        HBox btn = new BtnMenu(new VBoxForLoadFile().getMainVBox()).getMainHBox();
+        mainPane.setId("mainPane");
+
+        HBox btn = new BtnMenu(new MainMenu()).getMainHBox();
         vBoxForMenuBtn.getChildren().add(btn);
 
-        //ProcesingRequests.getData();
-        mainPane.setStyle("-fx-background-image: url(/MainBackend.jpg); \n" +
-                "-fx-background-position: 50%;");
-
-        //btn.getChildren().get(0).getStyle;
+        ProcesingRequests rq = new ProcesingRequests();
+        rq.getData(new File("/data.json"));
     }
 
     public void btnClick(ActionEvent actionEvent) {

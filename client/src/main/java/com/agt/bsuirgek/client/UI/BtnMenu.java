@@ -22,9 +22,9 @@ public class BtnMenu {
         this.hboxMain = hboxMain;
 
         btnMenu = new Button();
-        btnMenu.setPrefSize(63,63);
-        btnMenu.setMinSize(63,63);
-        btnMenu.setMaxSize(63,63);
+        btnMenu.setPrefSize(64,64);
+        btnMenu.setMinSize(64,64);
+        btnMenu.setMaxSize(64,64);
         btnMenu.setId("btnMain");
 
         hboxMain.getChildren().add(0, btnMenu);

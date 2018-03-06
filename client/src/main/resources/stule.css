@@ -1,8 +1,0 @@
-
-#btnMain{
-    -fx-background-image: url("MainBtn2.jpg");
-}
-
-#btnMain:hover{
-    -fx-background-image: url("newBtn.jpg");
-}
