@@ -6,7 +6,7 @@ import java.io.FileOutputStream
 import java.math.BigInteger
 
 fun Double.toInch() = (this*1440).toInt()
-fun Double.toBigInch(): BigInteger = BigInteger.valueOf(this.toInch().toLong())
+fun Double.toBigInch(): BigInteger = toInch().toBigInteger()
 
 inline fun createDoc(block: XWPFDocument.() -> Unit) = XWPFDocument().apply(block)
 

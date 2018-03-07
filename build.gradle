@@ -10,16 +10,30 @@ buildscript {
     }
 }
 
-ext.group = 'com.agt'
-
 group 'com.agt'
 version '1.0'
 
+ext.poiVersion = '3.17'
+ext.group = 'com.agt'
+
 allprojects {
+    apply plugin: 'java'
     repositories {
         jcenter()
         maven { url "http://dl.bintray.com/kotlin/exposed" }
         maven { url "http://dl.bintray.com/kotlin/ktor" }
         maven { url "https://dl.bintray.com/kotlin/kotlinx" }
     }
+
+    dependencies {
+        implementation "org.apache.poi:poi:$poiVersion"
+        implementation "org.apache.poi:poi-scratchpad:$poiVersion"
+        implementation "org.apache.poi:poi-ooxml:$poiVersion"
+        implementation "org.apache.poi:ooxml-schemas:1.3"
+
+        implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        implementation 'com.google.code.gson:gson:2.8.2'
+    }
+
 }

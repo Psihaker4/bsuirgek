@@ -44,24 +44,18 @@ public class ProcesingRequests {
 
     public static void getData(Queries req, File dile){
 
-        Gson gson = new Gson();
-
         String json = "some json";
-
+        Gson gson = new Gson();
         JsonParser parser = new JsonParser();
         JsonArray array = parser.parse(json).getAsJsonArray();
-
         array.forEach(jsonElement -> {
             JsonObject obj = jsonElement.getAsJsonObject();
-
             Map<String,String> map = gson.fromJson(obj.get("params"),new TypeToken<Map<String,String>>(){}.getType());
             String type = obj.get("type").getAsString();
-
             switch (type) {
                 case "Teacher" : System.out.println(new Teacher(map));
                 case "Student" : System.out.println(new Student(map));
             }
-
         });
 
 

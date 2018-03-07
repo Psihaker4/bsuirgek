@@ -35,25 +35,23 @@ import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
 
-//    val template = "D:/temp1.docx".asDOCX()
-//    val doc = "D:/doc1.docx".asDOCX()
-//    val data = template.parse(doc)
-//
-//    val d = data.toJson()
-//    val array = JsonParser().parse(d).asJsonArray
-//
-//
-//    array.forEach {
-//
-//        val obj = it.asJsonObject
-//        val type = obj["type"].asString
-//        val map = Gson().fromJson<Map<String, String>>(obj["params"], object : TypeToken<Map<String, String>>() {}.type)
-//
-//        when (type) {
-//            "Teacher" -> println(Teacher(map))
-//            "Student" -> println(Student(map))
-//        }
-//    }
+    val template = "D:/temp1.docx".asDOCX()
+    val doc = "D:/doc1.docx".asDOCX()
+    val data = template.parse(doc)
+
+    val d = data.toJson()
+
+
+    val array = JsonParser().parse(d).asJsonArray
+    array.forEach {
+        val obj = it.asJsonObject
+        val type = obj["type"].asString
+        val map = Gson().fromJson<Map<String, String>>(obj["params"], object : TypeToken<Map<String, String>>() {}.type)
+        when (type) {
+            "Teacher" -> println(Teacher(map))
+            "Student" -> println(Student(map))
+        }
+    }
 
 //    Configuration.Local.startServer { config ->
 //        config.init(args)

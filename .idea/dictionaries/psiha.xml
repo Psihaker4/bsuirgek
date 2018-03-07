@@ -2,6 +2,7 @@
   <dictionary name="psiha">
     <words>
       <w>docx</w>
+      <w>templater</w>
       <w>xlsx</w>
     </words>
   </dictionary>
