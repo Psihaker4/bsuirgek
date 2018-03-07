@@ -23,6 +23,6 @@ interface TestService {
                @Part("type") type: RequestBody,
                @Part file: MultipartBody.Part): Call<ResponseBody>
 
-    @GET("templates")
+    @GET("testTemplates")
     fun getTemplates(): Call<ResponseBody>
 }

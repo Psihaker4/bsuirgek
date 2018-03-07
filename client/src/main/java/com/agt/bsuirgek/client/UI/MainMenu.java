@@ -8,13 +8,13 @@ import java.io.IOException;
 
 public class MainMenu extends VBox {
 
-    public MainMenu(){
-            try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainMenu.fxml"));
-        loader.setController(new MainMenuController());
-        loader.setRoot(this);
-        loader.load();
-        }catch (IOException e){
+    public MainMenu() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainMenu.fxml"));
+            loader.setController(new MainMenuController());
+            loader.setRoot(this);
+            loader.load();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

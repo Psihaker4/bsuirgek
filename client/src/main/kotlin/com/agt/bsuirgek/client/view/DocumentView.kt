@@ -4,6 +4,7 @@ import com.agt.bsuirgek.client.util.pix
 import javafx.event.EventTarget
 import javafx.geometry.Insets
 import javafx.geometry.Pos
+import javafx.scene.control.ListView
 import javafx.scene.layout.Border
 import javafx.scene.layout.BorderStroke
 import javafx.scene.layout.VBox
@@ -23,6 +24,14 @@ class DocumentView : View() {
 
     init {
         primaryStage.isMaximized = true
+
+        val lvTemplate = ListView<String>().apply {
+            style = "-fx-background-color: #666666"
+            setPrefSize(185.0, 400.0)
+            setMinSize(185.0, 400.0)
+            setMaxSize(185.0, 400.0)
+        }
+
     }
 
     fun EventTarget.page(op: VBox.() -> Unit = {}) = vbox {

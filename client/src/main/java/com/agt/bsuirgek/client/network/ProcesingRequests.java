@@ -1,7 +1,8 @@
 package com.agt.bsuirgek.client.network;
 
-import com.agt.bsuirgek.client.Object.Student;
-import com.agt.bsuirgek.client.Object.Teacher;
+import com.agt.bsuirgek.client.model.Student;
+import com.agt.bsuirgek.client.model.Teacher;
+import com.agt.bsuirgek.client.model.Temp;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.MediaType;
@@ -30,6 +31,15 @@ public class ProcesingRequests {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 System.out.println("socsesful");
+                Temp temp = new Temp("asd","ad");
+
+                try {
+                    ResponseBody responseBody = response.body();
+                    if(responseBody!=null)
+                        System.out.println(responseBody.string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
