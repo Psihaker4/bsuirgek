@@ -1,0 +1,1184 @@
+[
+  {
+    "params":{
+      "n":"1",
+      "surname":"Гурский",
+      "name":"Владимир",
+      "patronymic":"Евгеньевич ",
+      "data":"к. т. н. , доцент БГУ",
+      "phone":"+375297624881"
+    },
+    "type":"Teacher",
+    "id":"1Teacher",
+    "links":[
+      "1List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Авраменко",
+      "name":"С.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"1List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Антропов",
+      "name":"В.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"1List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Бойко",
+      "name":"М.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"1List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Васильев",
+      "name":"А.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"1List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Вашко",
+      "name":"Ю.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"1List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Велесюк",
+      "name":"М.",
+      "patronymic":"Л."
+    },
+    "type":"Student",
+    "id":"1List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Верещаго",
+      "name":"В.",
+      "patronymic":"Ю."
+    },
+    "type":"Student",
+    "id":"1List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Ворушенко",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"1List7Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Гайшун",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"1List8Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Грабок",
+      "name":"С.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"1List9Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"2",
+      "surname":"Коваленко",
+      "name":"Валентин",
+      "patronymic":"Максимович",
+      "data":"доцент кафедры ТОЭ БГУИР, к. т. н. , доцент",
+      "phone":"м. т. : 80295007385"
+    },
+    "type":"Teacher",
+    "id":"2Teacher",
+    "links":[
+      "2List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Денисенко",
+      "name":"А.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"2List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Денисов",
+      "name":"Е.",
+      "patronymic":"М."
+    },
+    "type":"Student",
+    "id":"2List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Дешко",
+      "name":"В.",
+      "patronymic":"Ю."
+    },
+    "type":"Student",
+    "id":"2List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Дещеня",
+      "name":"П.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"2List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Доманцевич",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"2List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Дубровский",
+      "name":"П.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"2List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Дулик",
+      "name":"М.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"2List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Елисеев",
+      "name":"И.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"2List7Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"3",
+      "surname":"Курулёв",
+      "name":"Александр",
+      "patronymic":"Петрович",
+      "data":"профессор кафедры ТОЭ БГУИР, к. т. н. , доцент",
+      "phone":"м. т. : 80292617477"
+    },
+    "type":"Teacher",
+    "id":"3Teacher",
+    "links":[
+      "3List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Жолнеркевич",
+      "name":"А.",
+      "patronymic":"И."
+    },
+    "type":"Student",
+    "id":"3List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Зуйкевич",
+      "name":"И.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"3List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Иванов",
+      "name":"А.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"3List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Иванов",
+      "name":"С.",
+      "patronymic":"О."
+    },
+    "type":"Student",
+    "id":"3List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Кацук",
+      "name":"Д.",
+      "patronymic":"Т."
+    },
+    "type":"Student",
+    "id":"3List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Качан",
+      "name":"В.",
+      "patronymic":"И."
+    },
+    "type":"Student",
+    "id":"3List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Качура",
+      "name":"Н.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"3List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Киреева",
+      "name":"Н.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"3List7Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"4",
+      "surname":"Свито",
+      "name":"Игорь",
+      "patronymic":"Леонтьевич",
+      "data":"к. т. н. , доцент кафедры ТОЭ БГУИР, ",
+      "phone":"р. т. : 293 86 08"
+    },
+    "type":"Teacher",
+    "id":"4Teacher",
+    "links":[
+      "4List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Кирилович",
+      "name":"М.",
+      "patronymic":"Д."
+    },
+    "type":"Student",
+    "id":"4List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Ковалевский",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"4List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Костив",
+      "name":"А.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"4List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Костюкова",
+      "name":"А.",
+      "patronymic":"Р."
+    },
+    "type":"Student",
+    "id":"4List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Красов",
+      "name":"В.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"4List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Кришнева",
+      "name":"Н.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"4List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Кудрявцев",
+      "name":"А.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"4List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"5",
+      "surname":"Сергеев",
+      "name":"Владимир",
+      "patronymic":"Игнатьевич",
+      "data":"доцент кафедры информационных технологий БГУ, к. т. н.",
+      "phone":"р. т. : 209 59 28"
+    },
+    "type":"Teacher",
+    "id":"5Teacher",
+    "links":[
+      "5List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Кузнечик",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"5List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Лапко",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"5List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Лебедик",
+      "name":"К.",
+      "patronymic":"М."
+    },
+    "type":"Student",
+    "id":"5List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Левдиков",
+      "name":"М.",
+      "patronymic":"И."
+    },
+    "type":"Student",
+    "id":"5List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Липский",
+      "name":"О.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"5List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Манько",
+      "name":"Л.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"5List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Масляков",
+      "name":"А.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"5List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"6",
+      "surname":"Царик",
+      "name":"Сергей",
+      "patronymic":"Всеволодович",
+      "data":"доцент кафедры информационных технологий БГУ, к. т. н. , доцент",
+      "phone":"Vel. : 80296550009"
+    },
+    "type":"Teacher",
+    "id":"6Teacher",
+    "links":[
+      "6List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Меерович",
+      "name":"П.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"6List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Микалуцкий",
+      "name":"К.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"6List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Михалап",
+      "name":"О.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"6List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Михалёв",
+      "name":"П.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"6List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Нагорный",
+      "name":"И.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"6List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Новицкий",
+      "name":"И.",
+      "patronymic":"О."
+    },
+    "type":"Student",
+    "id":"6List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Орлов",
+      "name":"А.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"6List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"7",
+      "surname":"Белодед",
+      "name":"Николай",
+      "patronymic":"Иванович",
+      "data":"к. т. н. , доцент Академии управления при Президенте РБ,",
+      "phone":"+375296702710"
+    },
+    "type":"Teacher",
+    "id":"7Teacher",
+    "links":[
+      "7List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Петроченко",
+      "name":"М.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"7List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Попов",
+      "name":"А.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"7List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Проказов",
+      "name":"Д.",
+      "patronymic":"Р."
+    },
+    "type":"Student",
+    "id":"7List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Пухальский",
+      "name":"В.",
+      "patronymic":"Э."
+    },
+    "type":"Student",
+    "id":"7List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Рачок",
+      "name":"В.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"7List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Романчук",
+      "name":"Д.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"7List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Севрюк",
+      "name":"В.",
+      "patronymic":"Э."
+    },
+    "type":"Student",
+    "id":"7List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"8",
+      "surname":"Щербович",
+      "name":"Жанна",
+      "patronymic":"Ивановна",
+      "data":"старший преподаватель Академии управления при Президенте РБ,",
+      "phone":"+375295595658"
+    },
+    "type":"Teacher",
+    "id":"8Teacher",
+    "links":[
+      "8List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Сезень",
+      "name":"С.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"8List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Сергута",
+      "name":"Д.",
+      "patronymic":"Г."
+    },
+    "type":"Student",
+    "id":"8List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Слугин",
+      "name":"С.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"8List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Стасевич",
+      "name":"К.",
+      "patronymic":"Ю."
+    },
+    "type":"Student",
+    "id":"8List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Субоч",
+      "name":"Д.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"8List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Ткаченко",
+      "name":"Ю.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"8List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Трухан",
+      "name":"А.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"8List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "n":"9",
+      "surname":"Юрча",
+      "name":"Ирина",
+      "patronymic":"Александровна",
+      "data":"старший преподаватель Академии управления при Президенте РБ,",
+      "phone":"+375297734843"
+    },
+    "type":"Teacher",
+    "id":"9Teacher",
+    "links":[
+      "9List"
+    ],
+    "tags":{
+      "links":"List"
+    }
+  },
+  {
+    "params":{
+      "surname":"Харитончик",
+      "name":"А.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"9List0Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Ходорович",
+      "name":"Н.",
+      "patronymic":"Н."
+    },
+    "type":"Student",
+    "id":"9List1Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Цивинский",
+      "name":"В.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"9List2Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Циунчик",
+      "name":"Е.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"9List3Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Шикунец",
+      "name":"Е.",
+      "patronymic":"В."
+    },
+    "type":"Student",
+    "id":"9List4Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Кравченко",
+      "name":"Н.",
+      "patronymic":"А."
+    },
+    "type":"Student",
+    "id":"9List5Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  },
+  {
+    "params":{
+      "surname":"Моисеенков",
+      "name":"А.",
+      "patronymic":"С."
+    },
+    "type":"Student",
+    "id":"9List6Student",
+    "links":[
+
+    ],
+    "tags":{
+
+    }
+  }
+]

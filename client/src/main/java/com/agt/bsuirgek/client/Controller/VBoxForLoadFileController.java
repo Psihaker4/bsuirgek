@@ -15,15 +15,15 @@ public class VBoxForLoadFileController {
         FileChooser filechoos = new FileChooser();
         File file = null;
 
-            file = filechoos.showOpenDialog(MainStage.mainStage);
-            if(file != null){
-                tfWayFile.setText(file.getName());
-                btnOk.setDisable(false);
-                return file;
-            }
-            else{
-            }
+        file = filechoos.showOpenDialog(MainStage.mainStage);
+        if(file != null){
+            tfWayFile.setText(file.getName());
+            btnOk.setDisable(false);
             return file;
+        }
+        else{
+        }
+        return file;
 
     }
 
