@@ -3,28 +3,13 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '2.0.2'
 }
 
-ext.poiVersion = '3.17'
 ext.ktorVersion = '0.9.1'
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     implementation "io.ktor:ktor-server-core:$ktorVersion"
     implementation "io.ktor:ktor-server-netty:$ktorVersion"
-
     implementation 'org.jetbrains.exposed:exposed:0.9.1'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.google.code.gson:gson:2.8.2'
-
-    implementation "org.apache.poi:poi:$poiVersion"
-    implementation "org.apache.poi:poi-scratchpad:$poiVersion"
-    implementation "org.apache.poi:poi-ooxml:$poiVersion"
-
-    testImplementation 'junit:junit:4.12'
-
 }
 
 kotlin {

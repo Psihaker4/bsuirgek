@@ -39,27 +39,27 @@ fun main(args: Array<String>) {
 //    val doc = "D:/doc1.docx".asDOCX()
 //    val data = template.parse(doc)
 //
+//    println(data)
+
 //    val d = data.toJson()
+//
+//
 //    val array = JsonParser().parse(d).asJsonArray
-//
-//
 //    array.forEach {
-//
 //        val obj = it.asJsonObject
 //        val type = obj["type"].asString
 //        val map = Gson().fromJson<Map<String, String>>(obj["params"], object : TypeToken<Map<String, String>>() {}.type)
-//
 //        when (type) {
 //            "Teacher" -> println(Teacher(map))
 //            "Student" -> println(Student(map))
 //        }
 //    }
 
-//    Configuration.Local.startServer { config ->
-//        config.init(args)
-//        config.connectDb()
-//        server(config)
-//    }
+    Configuration.Local.startServer { config ->
+        config.init(args)
+        config.connectDb()
+        server(config)
+    }
 
 }
 
@@ -71,6 +71,9 @@ inline fun speedTester(body: () -> Unit) = println(measureTimeMillis(body))
 fun Application.server(config: Configuration) {
     routing {
         get("trimple/test") { test() }
+        get("trimple/testTemplates") {
+            call.respondText("[{\"name\":\"temp0\",\"date\":\"23.12.2016\"},{\"name\":\"temp1\",\"date\":\"12.02.2018\"}]")
+        }
         get("trimple/templates") {
             try {
                 val list = transaction {
@@ -100,8 +103,10 @@ fun Application.server(config: Configuration) {
                         is PartData.FormItem -> {
                             if (it.partName == "type") type = it.value
                             else temp = it.value
+                            println(it.value)
                         }
                         is PartData.FileItem -> {
+                            println(it.originalFileName)
                             val file = File("${config.rootPath}${it.originalFileName}")
                             it.streamProvider().use { file.outputStream().use { file -> it.copyTo(file) } }
                             docFile = file
@@ -112,7 +117,8 @@ fun Application.server(config: Configuration) {
 
                 val template = "${config.rootPath}$temp.$type".asDOCX()
                 val doc = docFile?.asDOCX()
-                if(doc == null) {
+
+                if (doc == null) {
                     write("Failes OPen File")
                     return@respondWrite
                 }
@@ -141,25 +147,25 @@ fun test() {
         override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
             println("SUCCESS")
             val s = response?.body()?.string()?:""
-
+            println(s)
             println(System.currentTimeMillis() - int)
         }
 
     })
 
 
-//
-//    service.getTemplates().enqueue(object : Callback<ResponseBody> {
-//        override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-//            println("FAIL")
-//        }
-//
-//        override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
-//            println("SUCCESS")
-//            println(response?.body()?.string())
-//            println(System.currentTimeMillis() - int)
-//        }
-//
-//    })
+
+    service.getTemplates().enqueue(object : Callback<ResponseBody> {
+        override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+            println("FAIL")
+        }
+
+        override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+            println("SUCCESS")
+            println(response?.body()?.string())
+            println(System.currentTimeMillis() - int)
+        }
+
+    })
 
 }

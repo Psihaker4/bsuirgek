@@ -1,6 +1,6 @@
 package com.agt.bsuirgek.client.Controller;
 
-import com.agt.bsuirgek.client.UI.MainStage;
+import com.agt.bsuirgek.client.App;
 import com.agt.bsuirgek.client.network.ProcesingRequests;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -15,7 +15,7 @@ public class VBoxForLoadFileController {
         FileChooser filechoos = new FileChooser();
         File file = null;
 
-        file = filechoos.showOpenDialog(MainStage.mainStage);
+        file = filechoos.showOpenDialog(App.stage);
         if(file != null){
             tfWayFile.setText(file.getName());
             btnOk.setDisable(false);

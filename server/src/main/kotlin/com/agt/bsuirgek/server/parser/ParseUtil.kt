@@ -19,7 +19,7 @@ typealias PatternWithDoubleIndex = Pair<Pair<Int, Int>, Pattern>
 
 fun String.asDOCX() = XWPFDocument(FileInputStream(this))
 fun String.asXLSX() = XSSFWorkbook(FileInputStream(this))
-fun File.asDOCX() = XWPFDocument(this.inputStream())
+fun File.asDOCX() = XWPFDocument(inputStream())
 
 private val regex = "\\$\\{(.+?)}".toRegex()
 
