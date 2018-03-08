@@ -52,13 +52,14 @@
     -fx-box-shadow: 5 5 #232626;
 }
 
-#ShapeChc{        /*Пункт в списке возможных шаблонов*/
+.list-cell{        /*Пункт в списке возможных шаблонов*/
     -fx-background-color: #9E9E9E;
 }
 
-#ShapeChc:hover{        /*Пункт в списке возможных шаблонов*/
+.list-cell:hover{        /*Пункт в списке возможных шаблонов*/
     -fx-background-color: #8C8C8C;
 }
+
 
                                     /*Окошко Время*/
 /*#Time{
