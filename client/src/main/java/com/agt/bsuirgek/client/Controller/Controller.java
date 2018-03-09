@@ -5,6 +5,8 @@ import com.agt.bsuirgek.client.UI.MainMenu;
 import com.agt.bsuirgek.client.network.ProcesingRequests;
 import com.agt.bsuirgek.client.network.Queries;
 import com.agt.bsuirgek.client.network.ServiceGenerator;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
