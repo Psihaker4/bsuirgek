@@ -2,13 +2,13 @@ package com.agt.bsuirgek.client.UI;
 
 import com.agt.bsuirgek.client.Controller.MainTableController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class MainTable extends Pane {
+public class MainTable extends VBox {
 
-    private MainTableController controller = new MainTableController();
+    private MainTableController controller = new MainTableController(this);
 
     public MainTable(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainTable.fxml"));

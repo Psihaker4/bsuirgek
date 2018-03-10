@@ -39,7 +39,7 @@ public class Controller {
         ProcesingRequests a = new ProcesingRequests();
         a.getData();
 
-        WindowPerson person = new WindowPerson();
+       /* WindowPerson person = new WindowPerson();
         person.getController().setPersonTeacher(TempMemory.listTempTeacher.get(1), 1);
         person.getController().setMainPane(mainPane);
         person.setLayoutX(400);
@@ -58,7 +58,13 @@ public class Controller {
         mainPane.getChildren().add(datePicker);
 
         mainPane.getChildren().add(person);
-        mainPane.getChildren().add(person2);
+        mainPane.getChildren().add(person2);*/
+
+       MainTable mainTable = new MainTable();
+       mainTable.setLayoutX(400);
+       mainTable.setLayoutY(400);
+
+       mainPane.getChildren().add(mainTable);
 
         ProcesingRequests rq = new ProcesingRequests();
         rq.getData();

@@ -23,4 +23,8 @@ public class Student {
         average = map.get("average");
         paymentPercent = map.get("paymentPercent");
     }
+
+    public Map<String, String> getMapStident(){
+        return mapStident;
+    }
 }
