@@ -9,6 +9,7 @@ import javafx.scene.layout.Border
 import javafx.scene.layout.BorderStroke
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
+import javafx.scene.paint.Paint
 import javafx.scene.text.Font
 import javafx.scene.text.TextAlignment
 import javafx.stage.Screen
@@ -16,6 +17,8 @@ import org.apache.poi.xwpf.usermodel.*
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr
 import tornadofx.*
 import java.io.FileInputStream
+import java.util.*
+
 //8.27 x 11.69
 class DocumentView : View() {
 
@@ -87,7 +90,9 @@ class DocumentView : View() {
                                     }
 
                                     it.runs.forEach {
-                                        text(it.text()) {
+                                        val text = if(it.isCapitalized) it.text().toUpperCase() else it.text()
+                                        text(text) {
+                                            println("${it.fontName}  ${it.fontSize}  ${it.isCapitalized}")
                                             font = Font("Times New Roman", 14.0)
                                         }
                                     }
