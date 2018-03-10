@@ -4,15 +4,15 @@ import java.util.Map;
 
 public class Teacher {
 
-    public String surname;
-    public String name;
-    public String patronymic;
-    public String data;
-    public String phone;
-    private Map<String, String> mapTeacher;
+    private String surname;
+    private String name;
+    private String patronymic;
+    private String data;
+    private String phone;
+    private Map<String, String> map;
 
     public Teacher(Map<String, String> map){
-        mapTeacher = map;
+        this.map = map;
         surname = map.get("surname");
         name = map.get("name");
         patronymic = map.get("patronymic");

@@ -3,21 +3,17 @@ package com.agt.bsuirgek.client.view
 import com.agt.bsuirgek.client.util.pix
 import javafx.event.EventTarget
 import javafx.geometry.Insets
-import javafx.geometry.Pos
-import javafx.scene.control.ListView
-import javafx.scene.layout.Border
-import javafx.scene.layout.BorderStroke
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
-import javafx.scene.paint.Paint
 import javafx.scene.text.Font
 import javafx.scene.text.TextAlignment
-import javafx.stage.Screen
-import org.apache.poi.xwpf.usermodel.*
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment
+import org.apache.poi.xwpf.usermodel.XWPFDocument
+import org.apache.poi.xwpf.usermodel.XWPFParagraph
+import org.apache.poi.xwpf.usermodel.XWPFTable
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr
 import tornadofx.*
 import java.io.FileInputStream
-import java.util.*
 
 //8.27 x 11.69
 class DocumentView : View() {
@@ -27,14 +23,6 @@ class DocumentView : View() {
 
     init {
         primaryStage.isMaximized = true
-
-        val lvTemplate = ListView<String>().apply {
-            style = "-fx-background-color: #666666"
-            setPrefSize(185.0, 400.0)
-            setMinSize(185.0, 400.0)
-            setMaxSize(185.0, 400.0)
-        }
-
     }
 
     fun EventTarget.page(op: VBox.() -> Unit = {}) = vbox {

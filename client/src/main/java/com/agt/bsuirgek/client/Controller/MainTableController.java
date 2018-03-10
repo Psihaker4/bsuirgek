@@ -19,7 +19,6 @@ public class MainTableController {
     private Map<String, TableColumn<Student, String>> mapColumn = new HashMap<>();
     private int quantityColumn = 0;
 
-
     @FXML
     public TableView<Student> mainTable;
 
@@ -31,19 +30,23 @@ public class MainTableController {
     public void initialize() {
 
         ObservableList<Student> items = FXCollections.observableArrayList(TempMemory.listTempStudent);
-        mainTable.setItems(items);
 
-        for (Map.Entry<String, String> entry : TempMemory.listTempStudent.get(1).getMapStident().entrySet()) {
-            quantityColumn++;
-            mapColumn.put(entry.getKey() ,new TableColumn<Student, String>(TempMemory.RUS_NAME_FIELD_STUDENT.get(entry.getKey())));
-            mapColumn.get(entry.getKey()).setCellValueFactory(new PropertyValueFactory<>(entry.getKey()));
-            mainTable.getColumns().add(mapColumn.get(entry.getKey()));
+        quantityColumn = TempMemory.listTempStudent.get(1).getMap().size();
+
+        for (String key : TempMemory.listTempStudent.get(1).getMap().keySet()) {
+            TableColumn<Student, String> column = new TableColumn<>(TempMemory.RUS_NAME_FIELD_STUDENT.get(key));
+            column.setCellValueFactory(new PropertyValueFactory<>(key));
+            mapColumn.put(key, column);
         }
+
+        mainTable.setItems(items);
+        mainTable.getColumns().addAll(mapColumn.values());
+
         double widthColumn = mainTable.getPrefWidth()/quantityColumn;
-        for(Map.Entry<String, TableColumn<Student, String>> entry : mapColumn.entrySet()){
-            entry.getValue().setPrefWidth(widthColumn);
-            entry.getValue().setMinWidth(widthColumn);
-            entry.getValue().setMaxWidth(widthColumn);
+        for(TableColumn<Student, String> entry : mapColumn.values()) {
+            entry.setPrefWidth(widthColumn);
+            entry.setMinWidth(widthColumn);
+            entry.setMaxWidth(widthColumn);
         }
     }
 }

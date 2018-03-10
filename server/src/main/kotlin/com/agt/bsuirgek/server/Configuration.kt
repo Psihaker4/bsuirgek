@@ -10,6 +10,7 @@ enum class Configuration(val rootPath: String,
                          val port: Int,
                          val mysqlPort: Int) {
     Local("D:/", "localhost", 8080, 3306),
+    Linux("/home/kotone/Documents/","localhost",8080,3306),
     Server("/home/trimple/bsuirgek/", "37.187.116.151", 8080, 3306);
 
     lateinit var password: String

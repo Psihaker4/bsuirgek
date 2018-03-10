@@ -2,7 +2,7 @@ package com.agt.bsuirgek.client.model
 
 class Temp(val name: String, val date: String)
 
-class Student(map: Map<String, String>){
+class Student(val map: Map<String, String>){
     val surname = map["surname"]
     val name = map["name"]
     val patronymic = map["patronymic"]
@@ -13,7 +13,7 @@ class Student(map: Map<String, String>){
     override fun toString() = "Student($surname;$name;$patronymic;$theme;$group;$average;$paymentPercent)"
 }
 
-class Teacher(map: Map<String, String>){
+class Teacher(val map: Map<String, String>){
     val surname = map["surname"]
     val name = map["name"]
     val patronymic = map["patronymic"]

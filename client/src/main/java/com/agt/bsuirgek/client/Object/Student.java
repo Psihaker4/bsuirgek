@@ -4,17 +4,17 @@ import java.util.Map;
 
 public class Student {
 
-    public String surname;
-    public String name;
-    public String patronymic;
-    public String theme;
-    public String group;
-    public String average;
-    public String paymentPercent;
-    private Map<String, String> mapStident;
+    private String surname;
+    private String name;
+    private String patronymic;
+    private String theme;
+    private String group;
+    private String average;
+    private String paymentPercent;
+    private Map<String, String> map;
 
     public Student(Map<String, String> map){
-        mapStident = map;
+        this.map = map;
         surname = map.get("surname");
         name = map.get("name");
         patronymic = map.get("patronymic");
@@ -24,7 +24,35 @@ public class Student {
         paymentPercent = map.get("paymentPercent");
     }
 
-    public Map<String, String> getMapStident(){
-        return mapStident;
+    public Map<String, String> getMap(){
+        return map;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public String getAverage() {
+        return average;
+    }
+
+    public String getPaymentPercent() {
+        return paymentPercent;
     }
 }

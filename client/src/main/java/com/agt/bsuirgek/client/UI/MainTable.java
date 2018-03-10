@@ -8,10 +8,11 @@ import java.io.IOException;
 
 public class MainTable extends VBox {
 
-    private MainTableController controller = new MainTableController(this);
+    private MainTableController controller;
 
     public MainTable(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainTable.fxml"));
+        controller = new MainTableController(this);
         loader.setRoot(this);
         loader.setController(controller);
 
