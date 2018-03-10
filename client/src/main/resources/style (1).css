@@ -1,0 +1,85 @@
+
+#mainPane{
+    -fx-background-image: url("/Images/Background.jpg");
+    -fx-background-position: 50%;
+} 
+
+.Button{
+    -fx-border: 0;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 19pt;
+    -fx-color: #FFFFFF;
+}
+
+                                                            /*Загрузка файлов*/
+
+#btnMain{                    /*Кнопочка загрузка файлов в обычном состоянии*/
+    -fx-background-color: transparent;
+    -fx-background-image: url("/Images/btnMain_File.png");
+    -fx-background-size: 100%;
+}
+
+#btnMain:hover{
+    -fx-background-color: transparent;
+    -fx-background-image: url("/Images/btnMain_File_hover.png");
+     -fx-background-size: 100%;
+
+}
+
+#vboxMain{            /*Фон меню Зашрузка файлов*/
+    -fx-background-color: transparent;
+    -fx-background-image: url("/Images/MenuFileBGR.png");
+     -fx-background-size: 100%;
+}
+
+#tfNameFileCss{            /*Поле ввода Имени файла */
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 3px;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-color: #B5B5B5;
+}
+
+#btnLoadCss{ /*Кнопка Открыть*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+}
+
+.list-cell{        /*Пункт в списке возможных шаблонов*/
+    -fx-background-color: #9E9E9E;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-color: #070707;
+}
+
+.list-cell:hover{        /*Пункт в списке возможных шаблонов*/
+    -fx-background-color: #8C8C8C;
+}
+
+#TxtFileMenu{ /*черный текст(Заголовки)*/
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 18pt;
+    -fx-color: #070707;
+}
+
+/*Окошко Время*/
+/*
+#Time{
+    -fx-background-color: #9E9E9E;
+    -fx-border-radius: 8px;
+    -fx-box-shadow: 5 5 #232626;
+}
+
+#TimeH #TimeM{ !*Поле часы и минуты*!
+    -fx-background-color: #FFFFFF;
+     -fx-border-radius: 3px 0 0 3px;
+     -fx-box-shadow: 5 5 #232626;
+}
+
+#TimeDropDawn{ !*Стрелочка которая вниз выпадает*!
+    -fx-background-color: transparent;
+     -fx-background-image: url("BtnDropDawn.png");
+     -fx-background-size: 100%;
+}
+
+*/

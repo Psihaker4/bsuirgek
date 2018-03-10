@@ -34,14 +34,10 @@ public class BtnMenu {
         vboxForElements.setMinWidth(width);
         vboxForElements.setMaxWidth(width);
 
-        //vBoxForLoadFile.setVisible(false);
-        //vboxForElements.getChildren().add(vBoxForLoadFile);
-
         btnMenu.setOnAction(event -> {
             if(showMenu == false){
                 vboxForElements.getChildren().add(vBoxForLoadFile);
                 showMenu = true;
-                //vBoxForLoadFile.setVisible(true);
 
             }
             else{

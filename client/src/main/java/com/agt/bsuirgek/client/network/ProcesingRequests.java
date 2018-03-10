@@ -1,8 +1,11 @@
 package com.agt.bsuirgek.client.network;
 
-import com.agt.bsuirgek.client.model.Student;
-import com.agt.bsuirgek.client.model.Teacher;
+import com.agt.bsuirgek.client.Object.Student;
+import com.agt.bsuirgek.client.Object.Teacher;
+import com.agt.bsuirgek.client.Object.TempMemory;
 import com.agt.bsuirgek.client.model.Temp;
+//import com.agt.bsuirgek.server.model.Student;
+//import com.agt.bsuirgek.server.model.Teacher;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.MediaType;
@@ -49,9 +52,9 @@ public class ProcesingRequests {
         });
     }
 
-    public void getData(File file){
-        ArrayList<Teacher> listTeacher = new ArrayList<Teacher>();
-        ArrayList<Student> listStudent = new ArrayList<Student>();
+    public void getData(){
+        /*ArrayList<Teacher> listTeacher = new ArrayList<Teacher>();
+        ArrayList<Student> listStudent = new ArrayList<Student>();*/
 
         Gson gson = new Gson();
 
@@ -68,11 +71,11 @@ public class ProcesingRequests {
 
                 switch (type) {
                     case "Teacher": {
-                        listTeacher.add(new Teacher(map));
+                        TempMemory.listTempTeacher.add(new Teacher(map));
                         break;
                     }
                     case "Student": {
-                        listStudent.add(new Student(map));
+                        TempMemory.listTempStudent.add(new Student(map));
                         break;
                     }
                 }

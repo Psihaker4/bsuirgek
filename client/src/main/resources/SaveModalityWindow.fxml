@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<fx:root type="javafx.scene.layout.Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="btnOK" layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnOKClick" prefHeight="30.0" prefWidth="119.0" text="Да">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnNO" layoutX="273.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnNOClick" prefHeight="37.0" prefWidth="119.0" text="Нет">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="68.0" layoutY="14.0" prefHeight="37.0" prefWidth="264.0" text="Хотите сохранить изменения ?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</fx:root>
