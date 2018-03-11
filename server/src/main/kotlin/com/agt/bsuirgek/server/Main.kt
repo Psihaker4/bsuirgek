@@ -1,25 +1,22 @@
 package com.agt.bsuirgek.server
 
-import com.agt.bsuirgek.server.model.Student
-import com.agt.bsuirgek.server.model.Teacher
 import com.agt.bsuirgek.server.model.Temp
 import com.agt.bsuirgek.server.model.Templates
-import com.agt.bsuirgek.server.parser.*
+import com.agt.bsuirgek.server.parser.asDOCX
+import com.agt.bsuirgek.server.parser.parse
+import com.agt.bsuirgek.server.parser.toJson
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonParser
-import com.google.gson.reflect.TypeToken
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.content.PartData
 import io.ktor.content.forEachPart
-import io.ktor.content.readAllParts
 import io.ktor.request.isMultipart
 import io.ktor.request.receiveMultipart
 import io.ktor.response.respondText
 import io.ktor.response.respondWrite
-import io.ktor.routing.*
+import io.ktor.routing.get
+import io.ktor.routing.post
+import io.ktor.routing.routing
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -34,36 +31,26 @@ import java.io.File
 import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
-
-//    val template = "D:/temp1.docx".asDOCX()
-//    val doc = "D:/doc1.docx".asDOCX()
-//    val data = template.parse(doc)
-//
-//    println(data)
-
-//    val d = data.toJson()
-//
-//
-//    val array = JsonParser().parse(d).asJsonArray
-//    array.forEach {
-//        val obj = it.asJsonObject
-//        val type = obj["type"].asString
-//        val map = Gson().fromJson<Map<String, String>>(obj["params"], object : TypeToken<Map<String, String>>() {}.type)
-//        when (type) {
-//            "Teacher" -> println(Teacher(map))
-//            "Student" -> println(Student(map))
-//        }
-//    }
-
-    Configuration.Local.startServer { config ->
-        config.init(args)
-        config.connectDb()
-        server(config)
+    speedTester {
+        val path = Configuration.Linux.rootPath
+        val template = "${path}temp2.docx".asDOCX()
+        val doc = "${path}doc2.docx".asDOCX()
+        val data = template.parse(doc)
+        println(data.toJson())
     }
+//    Configuration.Linux.startServer { config ->
+        //        config.init(args)
+        //        config.connectDb()
+        //        server(config)
+        //    }
 
+        }
+
+inline fun <T: Any>speedTester(body: () -> T): T {
+    lateinit var some: T
+    println(measureTimeMillis { some = body() })
+    return some
 }
-
-inline fun speedTester(body: () -> Unit) = println(measureTimeMillis(body))
 
 //fun parseTextXLSX(root: String, index: Int) = "${root}doc$index.xlsx".openAndParseXLSX("${root}temp$index.xlsx")
 //fun parseTextDOCX(root: String, index: Int) = "${root}doc$index.docx".openAndParseDOCX("${root}temp$index.docx")
@@ -139,14 +126,14 @@ fun test() {
 
     val int = System.currentTimeMillis()
 
-    service.upload(desc,type, body).enqueue(object : Callback<ResponseBody> {
+    service.upload(desc, type, body).enqueue(object : Callback<ResponseBody> {
         override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
             println("FAILURE")
         }
 
         override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
             println("SUCCESS")
-            val s = response?.body()?.string()?:""
+            val s = response?.body()?.string() ?: ""
             println(s)
             println(System.currentTimeMillis() - int)
         }

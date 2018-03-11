@@ -1,5 +1,4 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm'
     id 'com.github.johnrengelman.shadow' version '2.0.2'
 }
 
@@ -10,12 +9,6 @@ dependencies {
     implementation "io.ktor:ktor-server-core:$ktorVersion"
     implementation "io.ktor:ktor-server-netty:$ktorVersion"
     implementation 'org.jetbrains.exposed:exposed:0.9.1'
-}
-
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
 }
 
 shadowJar {

@@ -10,14 +10,13 @@ buildscript {
     }
 }
 
-group 'com.agt'
-version '1.0'
-
 ext.poiVersion = '3.17'
 ext.group = 'com.agt'
 
-allprojects {
+subprojects {
     apply plugin: 'java'
+    apply plugin: 'kotlin'
+
     repositories {
         jcenter()
         maven { url "http://dl.bintray.com/kotlin/exposed" }
@@ -34,6 +33,16 @@ allprojects {
         implementation 'com.squareup.retrofit2:retrofit:2.3.0'
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
         implementation 'com.google.code.gson:gson:2.8.2'
+    }
+
+    compileKotlin {
+        kotlinOptions.jvmTarget= "1.8"
+    }
+
+    kotlin {
+        experimental {
+            coroutines "enable"
+        }
     }
 
 }
