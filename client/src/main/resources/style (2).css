@@ -1,0 +1,182 @@
+
+#mainPane{
+    -fx-background-image: url("/Images/Background.jpg");
+    -fx-background-position: 50%;
+} 
+
+.Button{
+    -fx-border: 0;
+}
+
+.text-field{
+    -fx-focus-color: -fx-control-inner-background ;
+    -fx-faint-focus-color: -fx-control-inner-background ;
+
+}
+
+.text-field:focused {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+    linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
+}
+
+.list-cell{
+    -fx-background-color: #9E9E9E;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-color: #070707;
+}
+
+.list-cell:hover {
+    -fx-background-color: #8C8C8C;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-color: #070707;
+}
+
+.scroll-{
+    -fx-background-color: #FFFFFF;
+}
+
+                                                            /*Загрузка файлов*/
+
+#btnMainFile{                    /*Кнопочка загрузка файлов в обычном состоянии*/
+    -fx-background-color: transparent;
+    -fx-background-image: url("/Images/btnMain_File.png");
+    -fx-background-size: 100%;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+
+}
+
+#btnMainFileActive{                    /*Кнопочка загрузка файлов в обычном состоянии*/
+    -fx-background-image: url("/Images/btnMain_File.png");
+    -fx-background-color: #9E9E9E;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-radius: 8px  0 0 8px;
+}
+
+#btnMainFile:hover{
+    -fx-background-color: #9E9E9E;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-radius: 8px  8px 8px 8px;
+}
+
+#MenuFile{            /*Фон меню Зашрузка файлов*/
+   /* -fx-background-color: transparent;
+    -fx-background-image: url("/Images/MenuFileBGR.png");
+     -fx-background-size: 100%;*/
+    /*-fx-border-radius: 0  8px 8px 8px ;*/
+    -fx-background-radius: 0  8px 8px 8px;
+    -fx-background-color: #9E9E9E;
+   -fx-effect: dropshadow( three-pass-box , #424242 , 5, 0.0 , 5 , 1 );
+}
+
+#FieldFileName{            /*Поле ввода Имени файла */
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 3px;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-text-fill: #000000;
+}
+
+#BtnOpen { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-text-fill: #FFFFFF;
+}
+
+#BtnOpen:hover{
+    -fx-background-color: #005B4E;
+}
+#BtnOk { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-text-fill: #FFFFFF;
+}
+#BtnOk:hover{
+    -fx-background-color: #005B4E;
+}
+
+#ShapeChc{        /*Пункт в списке возможных шаблонов*/
+    -fx-background-color: #9E9E9E;
+    /*-fx-color: #070707;*/
+}
+
+#TxtFileMenu{ /*черный текст(Заголовки)*/
+    -fx-font-weight: 300;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15pt;
+    -fx-color: #070707;
+}
+
+
+
+/*!*Окошки  Время и Дата*!
+#Time #Date{        !*Фон времени и даты*!
+    -fx-background-color: #9E9E9E;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#EnterDateTime{         !*Поле часы, минуты, день, месяц, год*!
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 3px 0 0 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-color: #070707;
+    -fx-font-size: 17pt;
+}
+
+#DropDawn{ !*Стрелочка которая вниз выпадает для времени и даты*!
+    -fx-background-color: transparent;
+    -fx-background-image: url("/Images/BtnDropDawn.png");
+    -fx-background-size: 100%;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+
+
+                                            /*Студент или препод*/
+#WindowPerson{
+    -fx-background-color: #9E9E9E;
+    /*-fx-effect: dropshadow(three-pass-box , #424242 , 10, 0 , 5 , 0 );*/
+}
+
+5
+#headerPaneWindowPerson{
+     -fx-background-radius: 8px 8px 0 0;
+     -fx-background-color: #9E9E9E;
+     -fx-effect: dropshadow( three-pass-box , #424242 , 10, 0 , 0 , -5 );
+ }
+
+#headerPaneWindow{
+    -fx-background-radius: 8px 8px 0 0;
+    -fx-background-color: #9E9E9E;
+}
+
+#WindowName{
+    -fx-text-fill: #00796B;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 17pt;
+    -fx-font-weight: bold;
+}
+
+#BtnSave { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-text-fill: #FFFFFF;
+}
+#BtnSave:hover{
+    -fx-background-color: #005B4E;
+}
+                                            
+

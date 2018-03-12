@@ -2,22 +2,32 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="600.0" style="-fx-background-color: #D3D3D3;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="headerPaneWindowPerson" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="416.0" style="-fx-background-color: #D3D3D3;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #6666;">
+      <Pane id="headerPaneWindowPerson" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="416.0">
          <children>
-            <Label id="TxtFileMenu" fx:id="headerLabel" layoutX="22.0" layoutY="10.0" prefHeight="28.0" prefWidth="209.0" text="Label">
+            <Label id="WindowName" fx:id="headerLabel" layoutX="21.0" layoutY="4.0" prefHeight="28.0" prefWidth="209.0" text="Label">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="btnClose" layoutX="534.0" layoutY="11.0" mnemonicParsing="false" onAction="#closeWindowPerson" text="Button" />
+            <Button id="BtnSave" fx:id="btnClose" layoutX="350.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeWindowPerson" text="Button" />
          </children>
       </Pane>
-      <VBox fx:id="mainPane" prefHeight="184.0" prefWidth="600.0" style="-fx-background-color: #D3D3D3;" />
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="66.0" prefWidth="416.0">
+         <children>
+            <VBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox fx:id="mainPane" prefHeight="33.0" prefWidth="92.0" style="-fx-background-color: #D3D3D3;" />
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="416.0" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
 </fx:root>

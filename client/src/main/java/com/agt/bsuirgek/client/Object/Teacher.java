@@ -4,11 +4,11 @@ import java.util.Map;
 
 public class Teacher {
 
-    private String surname;
-    private String name;
-    private String patronymic;
-    private String data;
-    private String phone;
+    public String surname;
+    public String name;
+    public String patronymic;
+    public String data;
+    public String phone;
     private Map<String, String> map;
 
     public Teacher(Map<String, String> map){

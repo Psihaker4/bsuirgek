@@ -28,11 +28,14 @@ public class MainMenuController {
     @FXML
     public ListView<String> lvSetTemplate;
 
-    private ObservableList<String> list = FXCollections.observableArrayList("аблон 1", "шаблон 2", "шаблон 3", "аблон 1", "шаблон 2", "шаблон 3", "аблон 1", "шаблон 2", "шаблон 3", "аблон 1", "шаблон 2", "шаблон 3");
+    private ObservableList<String> list = FXCollections.observableArrayList("шаблон 1", "шаблон 2", "шаблон 3", "шаблон 1", "шаблон 2", "шаблон 3", "шаблон 1", "шаблон 2", "шаблон 3", "шаблон 1", "шаблон 2", "шаблон 3");
 
     @FXML
     public void initialize() {
         lvSetTemplate.setItems(list);
+        tfFileName.setEditable(false);
+        tfFileName.setText("Имя файла");
+        //tfFileName.setId("tfNameFile");
     }
 
     public void btnLoadAction(ActionEvent actionEvent) {

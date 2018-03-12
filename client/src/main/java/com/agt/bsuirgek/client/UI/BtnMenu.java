@@ -19,13 +19,15 @@ public class BtnMenu {
 
         HBox hboxMain = new HBox();
         hboxMain.setPrefSize(80,80);
+        hboxMain.setMinSize(80,80);
         this.hboxMain = hboxMain;
 
         btnMenu = new Button();
         btnMenu.setPrefSize(64,64);
         btnMenu.setMinSize(64,64);
         btnMenu.setMaxSize(64,64);
-        btnMenu.setId("btnMain");
+        btnMenu.setId("btnMainFile");
+
 
         hboxMain.getChildren().add(0, btnMenu);
 
@@ -38,12 +40,13 @@ public class BtnMenu {
             if(showMenu == false){
                 vboxForElements.getChildren().add(vBoxForLoadFile);
                 showMenu = true;
+                btnMenu.setId("btnMainFileActive");
 
             }
             else{
                 vboxForElements.getChildren().clear();
                 showMenu = false;
-                //vBoxForLoadFile.setVisible(false);
+                btnMenu.setId("btnMainFile");
             }
         });
 
