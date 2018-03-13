@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="519.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="1093.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="40.0" prefWidth="519.0" style="-fx-background-color: #6666;" />
-      <TableView fx:id="mainTable" prefHeight="305.0" prefWidth="519.0" />
+      <Pane id="HeaderTable" prefHeight="40.0" prefWidth="519.0">
+         <children>
+            <Label id="TableName" layoutX="30.0" layoutY="1.0" prefHeight="45.0" prefWidth="978.0" text="Список студентов" />
+         </children></Pane>
+      <AnchorPane id="TablePane" prefHeight="345.0" prefWidth="1093.0">
+         <children>
+            <TableView id="Table" fx:id="mainTable" prefHeight="305.0" prefWidth="1052.0" style="-fx-background-radius: 8;" AnchorPane.bottomAnchor="30.5" AnchorPane.leftAnchor="30.5" AnchorPane.rightAnchor="30.5" AnchorPane.topAnchor="10.0" />
+         </children>
+      </AnchorPane>
    </children>
 </fx:root>

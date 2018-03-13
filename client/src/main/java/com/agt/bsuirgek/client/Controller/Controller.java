@@ -33,13 +33,10 @@ public class Controller {
         public void initialize() {
         mainPane.setId("mainPane");
 
-        HBox btn = new BtnMenu(new MainMenu()).getMainHBox();
-        vBoxForMenuBtn.getChildren().add(btn);
-
         ProcesingRequests a = new ProcesingRequests();
         a.getData();
 
-       WindowPerson person = new WindowPerson();
+       /*WindowPerson person = new WindowPerson();
         person.getController().setPersonTeacher(TempMemory.listTempTeacher.get(1), 1);
         person.getController().setMainPane(mainPane);
         person.setLayoutX(400);
@@ -58,7 +55,16 @@ public class Controller {
         mainPane.getChildren().add(datePicker);
 
         mainPane.getChildren().add(person);
-        mainPane.getChildren().add(person2);
+        mainPane.getChildren().add(person2);*/
+
+       MainTable mainTable = new MainTable();
+       mainTable.setLayoutX(200);
+       mainTable.setLayoutY(200);
+
+       mainPane.getChildren().add(mainTable);
+
+        HBox btn = new BtnMenu(new MainMenu()).getMainHBox();
+        vBoxForMenuBtn.getChildren().add(btn);
     }
 
     public void btnClick(ActionEvent actionEvent) {

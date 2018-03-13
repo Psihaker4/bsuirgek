@@ -36,7 +36,42 @@
 .scroll-{
     -fx-background-color: #FFFFFF;
 }
+.table-view{
+    -fx-base: #B2DFDB;
+    -fx-background-color: transparent;
 
+}
+
+.table-view .column-header .label {
+    -fx-background-color: transparent;
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #FFFFFF;
+     }
+
+
+.table-view .table-row-cell{
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 0.15;
+}
+
+.table-view .table-column{
+    -fx-border-color: #9E9E9E;
+    -fx-border-width: 0.15;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+   -fx-background-color: #B2DFDB;
+}
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #070707;
+
+}
                                                             /*Загрузка файлов*/
 
 #btnMainFile{                    /*Кнопочка загрузка файлов в обычном состоянии*/
@@ -178,5 +213,26 @@
 #BtnSave:hover{
     -fx-background-color: #005B4E;
 }
-                                            
 
+                        /*Table*/
+
+#HeaderTable{
+    -fx-background-color: #9E9E9E;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+#TableName{
+    -fx-text-fill: #00796B;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 17pt;
+    -fx-font-weight: bold;
+}
+
+#TablePane{
+    -fx-background-color: #9E9E9E;
+    -fx-background-radius:  0 0 8px 8px;
+}
+
+#Table{
+    -fx-background-radius: 8px;
+}
