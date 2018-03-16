@@ -1,7 +1,7 @@
 package com.agt.bsuirgek.client.Object;
 
-//import com.agt.bsuirgek.server.model.Student;
-//import com.agt.bsuirgek.server.model.Teacher;
+//import com.agt.bsuirgek.connectionService.model.Student;
+//import com.agt.bsuirgek.connectionService.model.Teacher;
 
 
 import java.util.ArrayList;

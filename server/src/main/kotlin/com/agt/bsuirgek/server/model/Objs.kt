@@ -1,5 +1,7 @@
 package com.agt.bsuirgek.server.model
 
+import java.awt.SystemColor.text
+
 class Temp(val name: String, val date: String)
 
 class Student(map: Map<String, String>){
@@ -17,7 +19,13 @@ class Teacher(map: Map<String, String>){
     val surname = map["surname"]
     val name = map["name"]
     val patronymic = map["patronymic"]
-    val data = map["data"]
-    val phone = map["phone"]
-    override fun toString() = "Teacher($surname;$name;$patronymic;$data;$phone)"
+
+    val phoneNumber = map["phone_number"]
+    val external = map["external"]
+    val post = map["post"]
+
+//    val facultyId = reference("faculty_id", if (archive) Faculties.Archive else Faculties.Main).nullable()
+//    val pulpitId = reference("pulpit_id", if (archive) Pulpits.Archive else Pulpits.Main).nullable()
+
+    override fun toString() = "Teacher($surname;$name;$patronymic;$phoneNumber;$post)"
 }

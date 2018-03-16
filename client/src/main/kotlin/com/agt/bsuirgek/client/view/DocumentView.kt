@@ -18,7 +18,7 @@ import java.io.FileInputStream
 //8.27 x 11.69
 class DocumentView : View() {
 
-    val document by lazy { XWPFDocument(FileInputStream("D:/doc0.docx")) }
+    val document by lazy { XWPFDocument(FileInputStream("/home/kotone/Documents/doc0.docx")) }
     val section: CTSectPr by lazy { document.document.body.sectPr }
 
     init {

@@ -4,8 +4,6 @@ import com.agt.bsuirgek.client.Object.Student;
 import com.agt.bsuirgek.client.Object.Teacher;
 import com.agt.bsuirgek.client.Object.TempMemory;
 import com.agt.bsuirgek.client.model.Temp;
-//import com.agt.bsuirgek.server.model.Student;
-//import com.agt.bsuirgek.server.model.Teacher;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.MediaType;
@@ -16,9 +14,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+
+//import com.agt.bsuirgek.connectionService.model.Student;
+//import com.agt.bsuirgek.connectionService.model.Teacher;
 
 public class ProcesingRequests {
 

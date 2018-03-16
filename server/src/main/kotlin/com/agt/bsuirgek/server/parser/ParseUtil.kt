@@ -2,8 +2,6 @@ package com.agt.bsuirgek.server.parser
 
 import com.agt.bsuirgek.server.speedTester
 import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import org.apache.poi.xssf.usermodel.XSSFSheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
@@ -107,20 +105,10 @@ fun String.toNode() = create(this).run {pattern(tagName).apply { copy(this@run)}
 val builder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
 private fun create(xml: String): Element = builder.parse(InputSource(StringReader(xml))).documentElement
 
-fun Map<String,String>.isParamsEmpty(): Boolean {
-    forEach { if (it.value.isNotEmpty()) return false }
-    return true
-}
-
-
 fun List<ParseData>.toJson(): String {
     return speedTester {
 
-//        println(joinToString("\n"))
-
         val old = Gson().toJson(this)
-
-        val removed = mutableListOf<JsonElement>()
 
         val new = JsonParser().parse(old).asJsonArray.apply {
             forEach {
@@ -142,7 +130,7 @@ fun List<ParseData>.toJson(): String {
                                 its += it
                             }
                         }
-                        obj[it].isJsonArray  -> {
+                        obj[it].isJsonArray -> {
                             if (obj[it].asJsonArray.size() == 0)
                                 its += it
                         }
@@ -151,34 +139,10 @@ fun List<ParseData>.toJson(): String {
                 its.forEach { obj.remove(it) }
                 obj.remove("tags")
             }
-
-            forEach {
-                val obj = it.asJsonObject
-                if (obj.has("links")) {
-                    val links = obj["links"].asJsonArray.map { it.asString }
-
-                    val linksArray = JsonObject()
-                    links.forEach { link ->
-                        val element = find { it.asJsonObject["id"].asString == link }
-                        if (element != null) {
-                            linksArray.add(element.asJsonObject["id"].asString, element)
-                            removed.add(element)
-                        }
-                    }
-//                    println(linksArray)
-                    obj.remove("links")
-                    obj.add("links", linksArray)
-                }
-            }
-
-            removed.forEach {
-                it.asJsonObject.remove("id")
-                remove(it)
-            }
-
         }.toString()
-        val diff = ((1 - new.toByteArray().size / old.toByteArray().size.toDouble()) * 10000).toInt().toDouble()/100
+        val diff = ((1 - new.toByteArray().size / old.toByteArray().size.toDouble()) * 10000).toInt().toDouble() / 100
         println(old)
+        println(new)
         print("Compression: $diff%, Time(ms): ")
         new
     }

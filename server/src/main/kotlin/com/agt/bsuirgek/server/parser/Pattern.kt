@@ -7,14 +7,25 @@ import org.w3c.dom.Node
 import org.w3c.dom.Node.ELEMENT_NODE
 
 class Pattern(val type: String) {
-    private val isSpace by lazy { type == "s" }
-    val id by lazy { tags["id"] ?: type }
-    val field by lazy { tags["id"]?:"" }
+
     val tags by lazy { LinkedHashMap<String, String>() }
+    private val isSpace by lazy { type == "s" }
     private val text by lazy { tags["t"] ?: "" }
-    val links by lazy { tags["links"]?.split(',').orEmpty().toMutableList() }
     private val skips by lazy { tags["skip"]?.split(",").orEmpty().map { it.toInt() } }
     val patterns by lazy { mutableListOf<Pattern>() }
+
+    val data by lazy {
+        ParseData(
+            tags["id"] ?: type,
+            type,
+            mutableMapOf(),
+            tags["links"]?.split(',').orEmpty().fold(mutableMapOf()) { map, el ->
+                val (id, field) = el.split('=')
+                map[id] = field; map
+            },
+            tags
+        )
+    }
 
     inline operator fun String.invoke(vararg tags: Pair<String, String>, init: Pattern.() -> Unit = {}) =
         Pattern(this).also { pattern ->
@@ -83,7 +94,7 @@ class Pattern(val type: String) {
             temp = tmp
             params
         }
-        return ParseData(params, this)
+        return data.copyWithParams(params)
     }
 
     fun parseParagraph(paragraph: XWPFParagraph) = parseParagraph(paragraph.text)
@@ -112,8 +123,8 @@ class Pattern(val type: String) {
         return patterns.map {
             when (it.type) {
                 "Paragraph" -> it.parseParagraph(elements[0]).apply { elements.removeAt(0) }
-                "List"      -> it.parseList(elements).apply { (0 until size - 1).forEach { elements.removeAt(0) } }
-                else        -> throw Throwable("Multi Parse Error")
+                "List" -> it.parseList(elements).apply { (0 until size - 1).forEach { elements.removeAt(0) } }
+                else -> throw Throwable("Multi Parse Error")
             }
         }.flatMap { it }.collapse()
     }
@@ -155,15 +166,15 @@ class Pattern(val type: String) {
 
     private fun List<ParseData>.linkList(index: Int) = apply {
         forEach {
-            it.id = "$id$index${it.id}"
-            it.links.replaceAll { "$id$index$it" }
+            it.id = "${data.id}$index${it.id}"
+            it.links = it.links.mapKeys { "${data.id}$index${it.key}" }.toMutableMap()
         }
     }
 
     private fun List<ParseData>.linkTable(index: Int) = apply {
         forEach {
             it.id = "$index${it.id}"
-            it.links.replaceAll { "$index$it" }
+            it.links = it.links.mapKeys { "$index${it.key}" }.toMutableMap()
         }
     }
 
@@ -179,18 +190,32 @@ class Pattern(val type: String) {
     private fun List<ParseData>.collapse(): List<ParseData> = groupBy { it.id }.map {
         it.value.run {
             if (size == 1) get(0)
-            ParseData(connect { params }, get(0).type, it.key, flatMap { it.links }.toMutableList(), connect { tags })
+            else ParseData(
+                it.key,
+                get(0).type,
+                connect { params },
+                fold(mutableMapOf()) { init, el -> init += el.links;init },
+                connect { tags }
+            )
         }
     }
 
     private fun List<ParseData>.link(): List<ParseData> = toMutableList().apply {
-        val links = map { it.links }.flatMap { it }
+        val links = fold(mutableMapOf<String, String>()) { map, el ->
+            map += el.links
+            map
+        }
         add(
             ParseData(
-                emptyMap(),
+                data.id,
                 "List",
-                id,
-                map { it.id }.filter { !links.contains(it) }.toMutableList(),
+                emptyMap(),
+                map { it.id }
+                    .filter { !links.containsKey(it) }
+                    .foldIndexed(mutableMapOf()) { index, map, el ->
+                        map[el] = index.toString()
+                        map
+                    },
                 mutableMapOf()
             )
         )

@@ -1,22 +1,17 @@
 package com.agt.bsuirgek.client.Controller;
 
-import com.agt.bsuirgek.client.Object.TempMemory;
-import com.agt.bsuirgek.client.UI.*;
+import com.agt.bsuirgek.client.UI.BtnMenu;
+import com.agt.bsuirgek.client.UI.MainMenu;
+import com.agt.bsuirgek.client.UI.MainTable;
 import com.agt.bsuirgek.client.network.ProcesingRequests;
 import com.agt.bsuirgek.client.network.Queries;
 import com.agt.bsuirgek.client.network.ServiceGenerator;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Controller {
