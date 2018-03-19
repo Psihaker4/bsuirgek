@@ -5,6 +5,10 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph
 import org.apache.poi.xwpf.usermodel.XWPFTable
 import org.w3c.dom.Node
 import org.w3c.dom.Node.ELEMENT_NODE
+import java.util.*
+
+val IDS = LinkedList((0..1000).shuffled())
+
 
 class Pattern(val type: String) {
 
@@ -86,6 +90,7 @@ class Pattern(val type: String) {
         return text
     }
 
+
     private fun parseText(text: String): ParseData {
         var temp = text.correct()
         val params = patterns.foldIndexed(mutableMapOf<String, String>()) { index, params, pattern ->
@@ -106,16 +111,39 @@ class Pattern(val type: String) {
             if (txt != null) list += pattern.parseText(txt)
             temp = tmp
             list
-        }.collapse()
+        }//.collapse()
     }
 
     fun parseList(paragraphs: List<XWPFParagraph>): List<ParseData> {
         var listEnd = false
-        return paragraphs.filter { if (it.numLevelText == null) listEnd = true; !listEnd }
-            .mapIndexed { index, child -> parseParagraph(child).linkList(index) }
+        val idsMap = mutableMapOf<String,Int>()
+        val list = paragraphs.filter { if (it.numLevelText == null) listEnd = true; !listEnd }
+            .map { parseParagraph(it)}//.linkList(index) }
+            .apply {
+                forEach {
+                    val ids = mutableListOf<String>()
+                    it.forEach {
+                        ids += it.id
+                        ids += it.links.keys
+                    }
+                    ids.forEach {
+                        if(!idsMap.containsKey(it)) {
+                            idsMap[it] = IDS.poll()
+                        }
+                    }
+                    println(idsMap)
+                }
+            }
             .flatMap { it }
-            .collapse()
-            .link()
+
+//        list.forEach {
+//            it.id = IDS.poll().toString()
+//        }
+
+        return list
+            //.apply { println(joinToString("\n")) }
+            //.collapse()
+            //.link()
     }
 
     fun parseMulti(paragraphs: List<XWPFParagraph>): List<ParseData> {
@@ -126,45 +154,50 @@ class Pattern(val type: String) {
                 "List" -> it.parseList(elements).apply { (0 until size - 1).forEach { elements.removeAt(0) } }
                 else -> throw Throwable("Multi Parse Error")
             }
-        }.flatMap { it }.collapse()
+        }.flatMap { it }//.collapse()
     }
 
-    fun parseTable(table: XWPFTable): List<ParseData> =
-        table.rows.foldIndexed(mutableListOf<ParseData>()) { i, list, row ->
+    fun parseTable(table: XWPFTable): List<ParseData> {
+        var ii = 0
+        return table.rows.foldIndexed(mutableListOf<ParseData>()) { i, list, row ->
             if (skips.contains(i)) return@foldIndexed list
             list += row.tableCells.foldIndexed(mutableListOf<ParseData>()) { index, cells, cell ->
-                cells += patterns[index].parseMulti(cell.paragraphs).linkTable(i)
+                cells += patterns[index].parseMulti(cell.paragraphs)//.linkTable(ii)
                 cells
-            }
+            }//.apply { println(joinToString("\n")) }
+            ii++
             list
-        }.collapse().link()
+        }//.collapse().link()
+    }
 
-    fun parseSheet(sheet: XSSFSheet, shift: Pair<Int, Int>): List<ParseData> =
-        (shift.first..sheet.lastRowNum).fold(mutableListOf<ParseData>()) { rowList, rowIndex ->
-            val row = sheet.getRow(rowIndex) ?: return rowList.collapse()
+    fun parseSheet(sheet: XSSFSheet, shift: Pair<Int, Int>): List<ParseData> {
+        var index = 0
+        return (shift.first..sheet.lastRowNum).fold(mutableListOf<ParseData>()) { rowList, rowIndex ->
+            val row = sheet.getRow(rowIndex) ?: return rowList//.collapse()
             val realRowIndex = rowIndex - shift.first
             if (skips.contains(realRowIndex)) return@fold rowList
 
-            val ll =
-                (shift.second until row.lastCellNum).fold(mutableListOf<ParseData>()) cells@{ cellList, cellIndex ->
-                    val cell = row.getCell(cellIndex) ?: return@cells cellList
-                    val i = cellIndex - shift.second
-                    if (i >= patterns.size) return@cells cellList
+            rowList += (shift.second until row.lastCellNum).fold(mutableListOf<ParseData>()) cells@{ cellList, cellIndex ->
+                val cell = row.getCell(cellIndex) ?: return@cells cellList
+                val i = cellIndex - shift.second
+                if (i >= patterns.size) return@cells cellList
 
-                    cellList += patterns[i].parseParagraph(cell.toString()).linkTable(realRowIndex)
-                    cellList
-                }
+                cellList += patterns[i].parseParagraph(cell.toString())//.linkTable(index)
+                cellList
+            }//.apply { println(joinToString("\n")) }
 
-            rowList += ll
-
+            index++
             rowList
-        }.collapse().link()
+        }//.collapse().link()
+    }
 
     private fun nextBlock(pattern: Pattern, temp: String, index: Int) =
         if (pattern.isSpace) null to temp.substringAfter(pattern.text)
         else (if (index < patterns.size - 1) temp.substringBefore(patterns[index + 1].text) else temp) to temp
 
     private fun List<ParseData>.linkList(index: Int) = apply {
+        println("LIST")
+        println(joinToString("\n"))
         forEach {
             it.id = "${data.id}$index${it.id}"
             it.links = it.links.mapKeys { "${data.id}$index${it.key}" }.toMutableMap()
@@ -172,6 +205,8 @@ class Pattern(val type: String) {
     }
 
     private fun List<ParseData>.linkTable(index: Int) = apply {
+        println("TABLE")
+        println(joinToString("\n"))
         forEach {
             it.id = "$index${it.id}"
             it.links = it.links.mapKeys { "$index${it.key}" }.toMutableMap()

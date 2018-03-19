@@ -2,6 +2,8 @@ package com.agt.bsuirgek.server.parser
 
 import com.agt.bsuirgek.server.speedTester
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import org.apache.poi.xssf.usermodel.XSSFSheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
@@ -113,11 +115,11 @@ fun List<ParseData>.toJson(): String {
         val new = JsonParser().parse(old).asJsonArray.apply {
             forEach {
                 val obj = it.asJsonObject
-                val its = mutableListOf<String>()
+                val removeIds = mutableListOf<String>()
                 obj.keySet().forEach {
-                    when {
-                        obj[it].isJsonObject -> {
-                            val o = obj[it].asJsonObject
+                    val o = obj[it]
+                    when(o) {
+                        is JsonObject -> {
                             val remKeys = mutableListOf<String>()
                             o.keySet().forEach {
                                 if (o[it].asString == "") {
@@ -127,16 +129,16 @@ fun List<ParseData>.toJson(): String {
                             remKeys.forEach { o.remove(it) }
 
                             if (o.size() == 0) {
-                                its += it
+                                removeIds += it
                             }
                         }
-                        obj[it].isJsonArray -> {
-                            if (obj[it].asJsonArray.size() == 0)
-                                its += it
+                        is JsonArray -> {
+                            if (o.size() == 0)
+                                removeIds += it
                         }
                     }
                 }
-                its.forEach { obj.remove(it) }
+                removeIds.forEach { obj.remove(it) }
                 obj.remove("tags")
             }
         }.toString()

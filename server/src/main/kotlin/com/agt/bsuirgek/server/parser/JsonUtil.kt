@@ -24,7 +24,7 @@ fun JsonArray.heads(): List<JsonObject> {
     return filter { heads.contains(it.asJsonObject.id) }.map { it.asJsonObject }
 }
 
-fun JsonArray.map() = fold(mutableMapOf<String, JsonObject>()) { init, el ->
+fun JsonArray.groupById() = fold(mutableMapOf<String, JsonObject>()) { init, el ->
     init[el.asJsonObject.id] = el.asJsonObject
     init
 }
@@ -43,11 +43,63 @@ fun JsonObject.isList(): Boolean {
     return isList
 }
 
-val JsonObject.id
+var JsonObject.id
     get() = get("id").asString
+    set(value) = addProperty("id", value)
 val JsonObject.links
     get() = get("links").asJsonObject
 val JsonObject.type
     get() = get("type").asString
 val JsonObject.params
     get() = get("params").asJsonObject
+val JsonObject.isLinksPassed
+    get() = get("linksPassed")?.asBoolean ?: false
+
+fun JsonObject.pass() { addProperty("linksPassed", true) }
+
+fun JsonObject.pass(objects: Map<String,JsonObject>) {
+//    println(this)
+    pass()
+    if (isLinksList()) {
+        passLinks(objects)
+    } else {
+        links.keySet().forEach { key ->
+            val linkObject = objects[key] ?: return@forEach
+            println(linkObject.id)
+            if(!linkObject.isLinksPassed)
+                linkObject.passLinks(objects)
+        }
+    }
+}
+
+fun JsonObject.passLinks(objects: Map<String, JsonObject>) {
+    links.keySet().forEach {
+        val linkObject = objects[it] ?: return@forEach
+        val pre = links[it].asString
+        linkObject.unlink(pre)
+        println("$linkObject")
+        when (linkObject.type) {
+            "List" -> {
+//                println("LIST: $linkObject")
+                linkObject.pass(objects)
+            }
+            "Student" -> {
+//                println("STUDENT: $linkObject")
+                linkObject.pass(objects)
+            }
+            "Teacher" -> {
+//                println("TEACHER: $linkObject")
+                linkObject.pass(objects)
+            }
+        }
+    }
+}
+
+fun JsonObject.unlink(pre: String) {
+    id = id.removePrefix(pre)
+    links.keySet().forEach {
+        val v = links[it]
+        links.remove(it)
+        links.add(it.removePrefix(pre),v)//.id = links[it].asJsonObject.id.removePrefix(pre)
+    }
+}
