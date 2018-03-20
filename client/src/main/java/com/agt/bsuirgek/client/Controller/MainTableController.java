@@ -87,7 +87,7 @@ public class MainTableController {
 
             mainTable.getColumns().add(mapColumn.get(entry.getKey()));
         }
-        double widthColumn = mainTable.getPrefWidth()/quantityColumn;
+        double widthColumn = (mainTable.getPrefWidth() - 35)/quantityColumn;
         System.out.println(mainTable.getPrefWidth());
         for(Map.Entry<String, TableColumn<Student, String>> entry : mapColumn.entrySet()){
             entry.getValue().setPrefWidth(widthColumn);

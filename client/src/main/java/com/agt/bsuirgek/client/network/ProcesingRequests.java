@@ -3,6 +3,7 @@ package com.agt.bsuirgek.client.network;
 import com.agt.bsuirgek.client.Object.Student;
 import com.agt.bsuirgek.client.Object.Teacher;
 import com.agt.bsuirgek.client.Object.TempMemory;
+import com.agt.bsuirgek.client.Object.TypeTemplate;
 import com.agt.bsuirgek.client.model.Temp;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -16,6 +17,7 @@ import retrofit2.Response;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 //import com.agt.bsuirgek.connectionService.model.Student;
@@ -23,14 +25,14 @@ import java.util.Map;
 
 public class ProcesingRequests {
 
-    public static void uploadFile(Queries req, File file) {
+    public static void uploadFile(Queries req, File file, String temp) {
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
 
-        Call<ResponseBody> call = req.upload(body);
+        Call<ResponseBody> call = req.upload(body, "doc", temp);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -82,5 +84,27 @@ public class ProcesingRequests {
                 }
 
             }
+    }
+
+    public void getTemplate(Queries req){
+        Call<ArrayList<TypeTemplate>> call = req.getTemplate();
+
+        call.enqueue(new Callback<ArrayList<TypeTemplate>>() {
+            @Override
+            public void onResponse(Call<ArrayList<TypeTemplate>> call, Response<ArrayList<TypeTemplate>> response) {
+                ArrayList<TypeTemplate> list = response.body();
+
+                for(int i = 0; i < list.size(); i++){
+                    TempMemory.TEMPLATE.add(list.get(i).getName());
+                }
+
+                System.out.println(list.get(list.size() - 1).getName());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<TypeTemplate>> call, Throwable t) {
+
+            }
+        });
     }
 }

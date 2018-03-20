@@ -13,6 +13,7 @@ public class TempMemory {
     public static ArrayList<Student> listTempStudent = new ArrayList<>();
     public static Map<String, String> RUS_NAME_FIELD_TEACHER = getRusNameFieldTeacher();
     public static Map<String, String> RUS_NAME_FIELD_STUDENT = getRusNameFieldStudent();
+    public static ArrayList<String> TEMPLATE = new ArrayList<>();
 
     static private Map<String, String> getRusNameFieldTeacher(){
         Map<String, String> rusNameField = new HashMap<>();

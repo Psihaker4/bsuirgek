@@ -1,6 +1,6 @@
 
 #mainPane{
-    -fx-background-image: url("/Images/MainBckGrd.png");
+    -fx-background-image: url("/Images/Background.jpg");
     -fx-background-position: 50%;
 } 
 
@@ -8,75 +8,355 @@
     -fx-border: 0;
 }
 
+.text-field{
+    -fx-focus-color: -fx-control-inner-background ;
+    -fx-faint-focus-color: -fx-control-inner-background ;
+
+}
+
+.text-field:focused {
+
+}
+
+.list-cell{
+    -fx-background-color: #9E9E9E;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-color: #070707;
+}
+
+.list-cell:hover {
+    -fx-background-color: #8C8C8C;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-color: #070707;
+}
+
+.scroll-{
+    -fx-background-color: #FFFFFF;
+}
+
+
+.table-view{
+   -fx-background-color: transparent;
+
+}
+
+.table-view .filler{
+    -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #B2DFDB;
+    -fx-height: 300px;
+    }
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #4C4C4C;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-style: bold;
+    -fx-font-size: 14pt;
+
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: black;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.table-row-cell{
+    -fx-text-fill: black;
+    -fx-background-color: -fx-table-cell-border-color, #FFFFFF;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #FFFFFF;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #CECECE;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: #B2DFDB;
+}
+
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+.spinner{
+    -fx-body-color: #00796B;
+    -fx-color: #00796B;
+}
+.spinner >.increment-arrow-button /*.decrement-arrow-button*/:hover{
+    -fx-body-color: #005B4E;
+    -fx-background-color: #005B4E;
+    -fx-border-width: 0;
+    -fx-border-color: #005B4E;
+}
+
+.spinner:hover{
+      -fx-body-color: transparent;
+      -fx-color: transparent;
+
+  }
+
+.spinner:focused{
+    -fx-body-color: transparent;
+    -fx-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.spinner:hover{
+    -fx-body-color: #005B4E;
+    -fx-color:#005B4E;
+    -fx-border-width: 0;
+}
+
+.spinner:focused{
+    -fx-body-color: #005B4E;
+    -fx-color: #005B4E;
+    -fx-border: 0;
+
+}
+
+.DatePicker > .button {
+    -fx-body-color: #00796B;
+    -fx-color: #00796B;
+}
+
                                                             /*Загрузка файлов*/
 
-#btnMain{                    /*Кнопочка загрузка файлов в обычном состоянии*/
+#btnMainFile{                    /*Кнопочка загрузка файлов в обычном состоянии*/
     -fx-background-color: transparent;
     -fx-background-image: url("/Images/btnMain_File.png");
     -fx-background-size: 100%;
-    -fx-box-shadow: 8 8 #232626; 
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+
 }
 
-#btnMain:hover{
-    -fx-background-color: transparent;
-    -fx-background-image: url("/Images/btnMain_File_hover.png");
-     -fx-background-size: 100%;
-    -fx-box-shadow: 8 8 #232626;
+#btnMainFileActive{                    /*Кнопочка загрузка файлов в обычном состоянии*/
+    -fx-background-image: url("/Images/btnMain_File.png");
+    -fx-background-color: #9E9E9E;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-radius: 8px  0 0 8px;
 }
 
-#vboxMain{            /*Фон меню Зашрузка файлов*/
-    -fx-background-color: transparent;
+#btnMainFile:hover{
+    -fx-background-color: #9E9E9E;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-radius: 8px  8px 8px 8px;
+}
+
+#MenuFile{            /*Фон меню Зашрузка файлов*/
+   /* -fx-background-color: transparent;
     -fx-background-image: url("/Images/MenuFileBGR.png");
-     -fx-background-size: 100%;
-    -fx-box-shadow: 8 8 #232626;
+     -fx-background-size: 100%;*/
+    /*-fx-border-radius: 0  8px 8px 8px ;*/
+    -fx-background-radius: 0  8px 8px 8px;
+    -fx-background-color: #9E9E9E;
+   -fx-effect: dropshadow( three-pass-box , #424242 , 5, 0.0 , 5 , 1 );
 }
 
-
-#tfNameFileCss{            /*Поле ввода Имени файла */
+#FieldFileName{            /*Поле ввода Имени файла */
     -fx-background-color: #FFFFFF;
     -fx-border-radius: 3px;
-    -fx-box-shadow: 5 5 #232626;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13pt;
+    -fx-text-fill: #000000;
 }
 
-#btnLoadCss{ /*Кнопка Открыть*/
-    -fx-background-color: transparent;
-     -fx-background-image: url("/Images/BtnOpen.png");
-    -fx-background-size: 100%;
-    -fx-box-shadow: 5 5 #232626;
+#BtnOpen { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-text-fill: #FFFFFF;
 }
 
-#btnOKCss{ /*Кнопка Открыть*/
-    -fx-background-color: transparent;
-    -fx-background-image: url("/Images/Ок.png");
-    -fx-background-size: 100%;
-    -fx-box-shadow: 5 5 #232626;
+#BtnOpen:hover{
+    -fx-background-color: #005B4E;
+}
+#BtnOk { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-text-fill: #FFFFFF;
+}
+#BtnOk:hover{
+    -fx-background-color: #005B4E;
 }
 
-.list-cell{        /*Пункт в списке возможных шаблонов*/
+#ShapeChc{        /*Пункт в списке возможных шаблонов*/
     -fx-background-color: #9E9E9E;
+    /*-fx-color: #070707;*/
 }
 
-.list-cell:hover{        /*Пункт в списке возможных шаблонов*/
-    -fx-background-color: #8C8C8C;
+#TxtFileMenu{ /*черный текст(Заголовки)*/
+    -fx-font-weight: 300;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15pt;
+    -fx-color: #070707;
 }
 
 
-                                    /*Окошко Время*/
-/*#Time{
+
+/*!*Окошки  Время и Дата*!
+#Time #Date{        !*Фон времени и даты*!
     -fx-background-color: #9E9E9E;
     -fx-border-radius: 8px;
-    -fx-box-shadow: 5 5 #232626;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
-#TimeH #TimeM{ /*Поле часы и минуты*/
-    /*-fx-background-color: #FFFFFF;
-     -fx-border-radius: 3px 0 0 3px;
-     -fx-box-shadow: 5 5 #232626;
+#EnterDateTime{         !*Поле часы, минуты, день, месяц, год*!
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 3px 0 0 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-color: #070707;
+    -fx-font-size: 17pt;
 }
 
-#TimeDropDawn{ /*Стрелочка которая вниз выпадает*/
-    /*-fx-background-color: transparent;
-     -fx-background-image: url("BtnDropDawn.png");
-     -fx-background-size: 100%;
+#DropDawn{ !*Стрелочка которая вниз выпадает для времени и даты*!
+    -fx-background-color: transparent;
+    -fx-background-image: url("/Images/BtnDropDawn.png");
+    -fx-background-size: 100%;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}*/
+
+#TimeLabel{
+    -fx-text-fill: #00796B;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
 }
+
+#TimeBtn{ /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+#TimeBtn:hover{
+    -fx-background-color: #005B4E;
+}
+#DateLabel{
+    -fx-text-fill: #00796B;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
+}
+
+#DateBtn { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+#DateBtn:hover{
+    -fx-background-color: #005B4E;
+}
+
+                                            /*Студент или препод*/
+#WindowPerson{
+    -fx-background-color: #9E9E9E;
+    /*-fx-effect: dropshadow(three-pass-box , #424242 , 10, 0 , 5 , 0 );*/
+}
+
+5
+#headerPaneWindowPerson{
+     -fx-background-radius: 8px 8px 0 0;
+     -fx-background-color: #9E9E9E;
+    -fx-effect: dropshadow( three-pass-box , black , 5, 0.0 , 0 , 1 );
+ }
+
+
+
+#headerPaneWindow{
+    -fx-background-radius: 8px 8px 0 0;
+    -fx-background-color: #9E9E9E;
+}
+
+#WindowName{
+    -fx-text-fill: #00796B;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 17pt;
+    -fx-font-weight: bold;
+}
+
+#BtnSave { /*Кнопка*/
+    -fx-background-color: #00796B;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+
+}
+#BtnSave:hover{
+    -fx-background-color: #005B4E;
+}
+
+                        /*Table*/
+
+#HeaderTable{
+    -fx-background-color: #9E9E9E;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+#TableName{
+    -fx-text-fill: #00796B;
+    -fx-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 17pt;
+    -fx-font-weight: bold;
+}
+
+#TablePane{
+    -fx-background-color: #9E9E9E;
+    -fx-background-radius:  0 0 8px 8px;
+}
+
+#Table{
+    -fx-background-radius: 8px;
+}
+
+#lastLine{
+    -fx-background-color: #9E9E9E;
+    -fx-background-radius: 0 0 8px 8px;
+}
+
 

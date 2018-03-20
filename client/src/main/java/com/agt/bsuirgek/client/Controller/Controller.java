@@ -1,8 +1,7 @@
 package com.agt.bsuirgek.client.Controller;
 
-import com.agt.bsuirgek.client.UI.BtnMenu;
-import com.agt.bsuirgek.client.UI.MainMenu;
-import com.agt.bsuirgek.client.UI.MainTable;
+import com.agt.bsuirgek.client.Object.TempMemory;
+import com.agt.bsuirgek.client.UI.*;
 import com.agt.bsuirgek.client.network.ProcesingRequests;
 import com.agt.bsuirgek.client.network.Queries;
 import com.agt.bsuirgek.client.network.ServiceGenerator;
@@ -31,7 +30,9 @@ public class Controller {
         ProcesingRequests a = new ProcesingRequests();
         a.getData();
 
-       /*WindowPerson person = new WindowPerson();
+        a.getTemplate(req);
+
+        /*WindowPerson person = new WindowPerson();
         person.getController().setPersonTeacher(TempMemory.listTempTeacher.get(1), 1);
         person.getController().setMainPane(mainPane);
         person.setLayoutX(400);
@@ -41,7 +42,7 @@ public class Controller {
         person2.getController().setPersonStudent(TempMemory.listTempStudent.get(1), 1);
         person2.getController().setMainPane(mainPane);
         person2.setLayoutX(1100);
-        person2.setLayoutY(400);
+        person2.setLayoutY(400);*/
 
         WindowDatePicker datePicker = new WindowDatePicker();
         datePicker.getController().setMainPane(mainPane);
@@ -49,14 +50,20 @@ public class Controller {
         datePicker.setLayoutY(0);
         mainPane.getChildren().add(datePicker);
 
-        mainPane.getChildren().add(person);
+        /*mainPane.getChildren().add(person);
         mainPane.getChildren().add(person2);*/
 
-       MainTable mainTable = new MainTable();
+       /*MainTable mainTable = new MainTable();
        mainTable.setLayoutX(200);
        mainTable.setLayoutY(200);
 
-       mainPane.getChildren().add(mainTable);
+       mainPane.getChildren().add(mainTable);*/
+
+       WindowTimePicker time = new WindowTimePicker();
+       time.setLayoutX(400);
+       time.setLayoutY(400);
+
+       mainPane.getChildren().add(time);
 
         HBox btn = new BtnMenu(new MainMenu()).getMainHBox();
         vBoxForMenuBtn.getChildren().add(btn);

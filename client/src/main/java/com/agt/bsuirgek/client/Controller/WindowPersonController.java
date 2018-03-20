@@ -40,9 +40,19 @@ public class WindowPersonController {
     private Teacher teacherPerson;
     private Pane heandPane;
     private WindowPerson parent;
+    private Pane lastPane;
 
     public WindowPersonController(WindowPerson parent){
         this.parent = parent;
+
+        Pane lastLine = new Pane();
+        lastLine.setPrefHeight(27);
+        lastLine.setMinHeight(27);
+        lastLine.setMaxHeight(27);
+        lastLine.setId("lastLine");
+        lastLine.setStyle("-fx-background-color: #9E9E9E;");
+
+        lastPane = lastLine;
     }
 
     public void addTeacher(Teacher person) {
@@ -59,6 +69,8 @@ public class WindowPersonController {
                     massFieldWindowPerson.get(field.getName()).getController().setTfText((String) field.get(person));
                 }
             }
+
+            mainPane.getChildren().add(lastPane);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -78,6 +90,8 @@ public class WindowPersonController {
                     massFieldWindowPerson.get(field.getName()).getController().setTfText((String) field.get(person));
                 }
             }
+
+            mainPane.getChildren().add(lastPane);
         }catch (Exception e){
             e.printStackTrace();
         }

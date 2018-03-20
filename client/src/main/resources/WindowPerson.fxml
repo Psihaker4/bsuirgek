@@ -7,26 +7,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root id="headerPaneWindowPerson" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="416.0" style="-fx-background-color: #D3D3D3;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="PaneWindowPerson" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="416.0" style="-fx-background-color: transpatent; -fx-background-radius: 8px 8px 8px 8px; -fx-effect: dropshadow( three-pass-box , #303030 , 20, 0 , 0 , 0 );" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane id="headerPaneWindowPerson" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="416.0">
+      <Pane id="headerPaneWindowPerson" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="416.0" style="-fx-background-radius: 8px 8px 0 0; -fx-background-color: #9E9E9E;">
          <children>
-            <Label id="WindowName" fx:id="headerLabel" layoutX="21.0" layoutY="4.0" prefHeight="28.0" prefWidth="209.0" text="Label">
+            <Label id="WindowName" fx:id="headerLabel" layoutX="14.0" layoutY="4.0" prefHeight="28.0" prefWidth="209.0" text="Label">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button id="BtnSave" fx:id="btnClose" layoutX="350.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeWindowPerson" text="Button" />
+            <AnchorPane layoutX="177.0" layoutY="1.0" prefHeight="46.0" prefWidth="240.0">
+               <children>
+                  <Button id="BtnSave" fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindowPerson" prefHeight="32.0" prefWidth="89.0" text="Сохранить" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="6.0" />
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="66.0" prefWidth="416.0">
+      <AnchorPane maxWidth="-Infinity" prefHeight="66.0" prefWidth="416.0">
          <children>
-            <VBox maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox fx:id="mainPane" prefHeight="33.0" prefWidth="92.0" style="-fx-background-color: #D3D3D3;" />
-                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="416.0" />
-               </children>
-            </VBox>
+            <VBox fx:id="mainPane" prefHeight="59.0" prefWidth="416.0" style="-fx-background-color: #D3D3D3;" />
          </children>
       </AnchorPane>
    </children>

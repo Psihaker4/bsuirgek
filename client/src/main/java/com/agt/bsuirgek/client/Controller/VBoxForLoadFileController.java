@@ -28,7 +28,7 @@ public class VBoxForLoadFileController {
     }
 
     public void actionBtnOk(File file){
-        ProcesingRequests.uploadFile(Controller.req, file);
+        //ProcesingRequests.uploadFile(Controller.req, file);
     }
 
 }
